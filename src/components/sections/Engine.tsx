@@ -34,7 +34,7 @@ export function Engine() {
               </li>
             </ul>
             <p className="lp-fine">
-              Every rule inside TahaaraEngine<span className="lp-tm">™</span> is checked by Ustadh Yasin before it reaches you. A reminder is a
+              Every rule inside TahaaraEngine<span className="lp-tm">™</span> is checked by a qualified Ustadh (Islamic teacher) before it reaches you. A reminder is a
               heads-up, not a ruling.
             </p>
           </div>
