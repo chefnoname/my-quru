@@ -15,13 +15,13 @@ npm run build && npm start
 
 ## Settings
 
-Copy `.env.example` to `.env.local`. All three settings are optional, and are read at build time.
+None are needed to go live. To change one, copy `.env.example` to `.env.local`. They are read at build time.
 
 | Variable | What it does |
 | --- | --- |
-| `NEXT_PUBLIC_FORM_ENDPOINT` | The Formspree form the answers go to, like `https://formspree.io/f/xxxxxxxx`. While it is empty the form sends nothing, the thank-you panel says it was a preview, and search engines are asked not to list the page. |
+| `NEXT_PUBLIC_FORM_ENDPOINT` | Where the answers go. By default, Quru's Formspree form (`https://formspree.io/f/xvkakrqy`, set in `src/lib/config.ts`). Set another Formspree address to use a different form, or `off` for a design preview: the form sends nothing, the thank-you panel says so, and search engines are asked not to list the page. |
 | `NEXT_PUBLIC_CONTACT_EMAIL` | Shown on the thank-you panel. |
-| `NEXT_PUBLIC_SHOWCASE` | `true` for a copy to show investors: the thank-you panel shows without the preview note, though nothing is saved. |
+| `NEXT_PUBLIC_SHOWCASE` | `true` for a copy to show investors: the form never sends, and the thank-you panel shows without a preview note. |
 
 ### Where the answers go
 
@@ -31,7 +31,7 @@ The form sends these fields as `multipart/form-data`: `name`, `age`, `location`,
 
 ## Deploy
 
-Any host that runs Next.js works. On Vercel: import the repository, add `NEXT_PUBLIC_FORM_ENDPOINT` under Environment Variables, and deploy.
+Any host that runs Next.js works. On Vercel: import the repository and deploy. Sign-ups go to Formspree straight away, including from `npm run dev`, so use `NEXT_PUBLIC_FORM_ENDPOINT=off` in `.env.local` when you don't want test entries.
 
 ## Where things are
 
