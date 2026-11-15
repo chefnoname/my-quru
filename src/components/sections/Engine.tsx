@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { BellRing, CalendarDays } from "lucide-react";
 import { Term } from "../Term";
 import appScreens from "../../../public/app-screens.webp";
 
@@ -20,28 +19,18 @@ export function Engine() {
           <div className="lp-band-side" data-reveal>
             <ul className="lp-engine-list">
               <li>
-                <span className="lp-ico">
-                  <CalendarDays />
-                </span>
-                <div>
-                  <h3>Today&apos;s answer, with the reason</h3>
-                  <p>
-                    <Term /> asks you a few careful questions about your bleeding and discharge. In seconds it tells you whether to pray or fast today,
-                    and why.
-                  </p>
-                </div>
+                <h3>Today&apos;s answer, with the reason</h3>
+                <p>
+                  <Term /> asks you a few careful questions about your bleeding and discharge. In seconds it tells you whether to pray or fast today, and
+                  why.
+                </p>
               </li>
               <li>
-                <span className="lp-ico">
-                  <BellRing />
-                </span>
-                <div>
-                  <h3>A heads-up before your next period</h3>
-                  <p>
-                    Bring your past dates, from memory or another app. Quru learns your rhythm and reminds you a few days before, with simple ways to
-                    get ready in body and heart.
-                  </p>
-                </div>
+                <h3>A heads-up before your next period</h3>
+                <p>
+                  Bring your past dates, from memory or another app. Quru learns your rhythm and reminds you a few days before, with simple ways to get
+                  ready in body and heart.
+                </p>
               </li>
             </ul>
             <p className="lp-fine">

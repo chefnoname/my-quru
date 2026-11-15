@@ -19,11 +19,15 @@ Copy `.env.example` to `.env.local`. All three settings are optional, and are re
 
 | Variable | What it does |
 | --- | --- |
-| `NEXT_PUBLIC_FORM_ENDPOINT` | Where the form POSTs its answers, for example a Formspree, Basin or Zapier webhook address. While it is empty the page is a design preview: the form sends nothing, a strip at the top says so, and search engines are asked not to list the page. |
+| `NEXT_PUBLIC_FORM_ENDPOINT` | The Formspree form the answers go to, like `https://formspree.io/f/xxxxxxxx`. While it is empty the form sends nothing, the thank-you panel says it was a preview, and search engines are asked not to list the page. |
 | `NEXT_PUBLIC_CONTACT_EMAIL` | Shown on the thank-you panel. |
-| `NEXT_PUBLIC_SHOWCASE` | `true` for a copy to show investors: no preview strip, and the thank-you panel shows, though nothing is saved. |
+| `NEXT_PUBLIC_SHOWCASE` | `true` for a copy to show investors: the thank-you panel shows without the preview note, though nothing is saved. |
 
-The form sends these fields as `multipart/form-data`: `name`, `age`, `location`, `email`, `confused_recent`, `price` (`monthly`, `yearly`, `founding`, `custom` or `free`), `price_amount` and `price_period` (only when the price is `custom`), and `consent`. `_gotcha` is an empty trap for bots.
+### Where the answers go
+
+Sign-ups are stored in [Formspree](https://formspree.io). Open your form there to read the answers, export them as CSV, or have each one emailed to you. Formspree asks you to confirm by email after the first sign-up.
+
+The form sends these fields as `multipart/form-data`: `name`, `age`, `location`, `email`, `confused_recent`, `price` (`monthly`, `yearly`, `founding`, `custom` or `free`), `price_amount` and `price_period` (only when the price is `custom`), and `consent`. `_gotcha` is Formspree's trap for bots: people never see it, so a filled one means spam.
 
 ## Deploy
 

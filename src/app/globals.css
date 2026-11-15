@@ -139,7 +139,6 @@ form[id] { scroll-margin-top: var(--space-6); }
 .lp-kicker { font: 600 13px/20px var(--font-sans); letter-spacing: .08em; text-transform: uppercase; color: var(--brand); }
 
 /* Preview strip, with the palettes to try */
-.lp-preview { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: var(--space-2) var(--space-6); padding: var(--space-2) var(--gutter); border-bottom: 1px solid var(--line); background: var(--surface-raised); color: var(--ink); font: 500 13px/20px var(--font-sans); text-align: center; }
 
 /* Header: the wordmark shows in Arabic first, then rolls into English */
 .lp-top-mark { height: 1px; margin-bottom: -1px; }
@@ -215,7 +214,6 @@ form[id] { scroll-margin-top: var(--space-6); }
 
 /* What the app will do */
 .lp-alt { background: var(--surface-sunken); }
-.lp-ico { display: grid; place-items: center; width: 48px; height: 48px; margin-bottom: var(--space-2); border-radius: 50%; background: var(--tint-pink); color: var(--ink); }
 
 /* The name of the engine, explained where it is written */
 .lp-tm { margin-left: .04em; font-family: var(--font-sans); font-weight: 400; }
@@ -284,6 +282,7 @@ form[id] { scroll-margin-top: var(--space-6); }
 .lp-foot { padding-block: var(--space-12); border-top: 1px solid var(--line); background: var(--surface); }
 .lp-foot-grid { display: grid; gap: var(--space-4); justify-items: start; }
 .lp-foot svg { width: 32px; height: 32px; }
+.lp-foot-legal { display: grid; gap: var(--space-1); }
 
 /* ---------- Your cycle, learned ---------- */
 #cycle { overflow: clip; }
@@ -386,10 +385,6 @@ form[id] { scroll-margin-top: var(--space-6); }
 
 /* Shorter page: TahaaraEngine and the cycle in one band, beside the iPhones */
 .lp-engine-list { display: grid; gap: var(--space-6); margin-top: var(--space-2); }
-.lp-engine-list li { display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: var(--space-4); align-items: start; }
-.lp-engine-list .lp-ico { margin: 0; background: var(--surface-raised); color: var(--brand); }
-.lp-engine-list li:nth-child(3) .lp-ico { color: var(--refer); }
-.lp-engine-list svg { width: 22px; height: 22px; }
 .lp-engine-list h3 { margin-bottom: var(--space-1); font: 600 18px/26px var(--font-sans); }
 .lp-engine-list p { color: var(--ink); }
 .lp-band-side > .lp-fine { margin-top: var(--space-2); }

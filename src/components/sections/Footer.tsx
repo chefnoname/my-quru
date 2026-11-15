@@ -12,7 +12,11 @@ export function Footer() {
           </span>
           ) is the Quran&apos;s word for a woman&apos;s cycles, in Al-Baqarah 2:228.
         </p>
-        <p className="lp-fine">This page sets no cookies and runs no analytics. © 2026 Quru</p>
+        <div className="lp-foot-legal">
+          <p className="lp-fine">This page sets no cookies and runs no analytics.</p>
+          <p className="lp-fine">© 2026 Quru. Made in London.</p>
+          <p className="lp-fine">KOBCIN LTD · No. 17500293 · Registered in England &amp; Wales · 195 Wood Street, London, United Kingdom, E17 3NU</p>
+        </div>
       </div>
     </footer>
   );
