@@ -1,0 +1,107 @@
+"use client";
+
+import { useEffect, useRef, useState, type FocusEvent, type PointerEvent } from "react";
+import { cx } from "@/lib/cx";
+import { LogoMark } from "./LogoMark";
+import { useMotion, useRoll } from "./Motion";
+
+/**
+ * The header stays in reach. It is see-through at the very top; its button fills in once the hero's button has
+ * scrolled away, and steps aside while the form itself is on screen.
+ */
+export function Header() {
+  const [atTop, setAtTop] = useState(true);
+  const [heroButtonGone, setHeroButtonGone] = useState(false);
+  const [atJoin, setAtJoin] = useState(false);
+
+  useEffect(() => {
+    if (!("IntersectionObserver" in window)) return;
+    const last = (entries: IntersectionObserverEntry[]) => entries[entries.length - 1].isIntersecting;
+    const watch: Array<[string, (on: boolean) => void, IntersectionObserverInit?]> = [
+      ["top-mark", setAtTop],
+      ["hero-join", (on) => setHeroButtonGone(!on), { rootMargin: "-72px 0px 0px 0px" }],
+      ["join", setAtJoin, { rootMargin: "-50% 0px -50% 0px" }],
+    ];
+    const observers = watch.flatMap(([id, set, options]) => {
+      const el = document.getElementById(id);
+      if (!el) return [];
+      const io = new IntersectionObserver((entries) => set(last(entries)), options);
+      io.observe(el);
+      return [io];
+    });
+    return () => observers.forEach((io) => io.disconnect());
+  }, []);
+
+  return (
+    <>
+      <div className="lp-top-mark" id="top-mark" aria-hidden="true" />
+      <header className={cx("lp-top", atTop && "is-top", atJoin && "at-join")} id="site-top">
+        <div className="lp-wrap lp-top-in">
+          <Wordmark />
+          <a className={cx("qu-btn", heroButtonGone && "qu-btn-primary")} href="#join">
+            Join the list
+          </a>
+        </div>
+      </header>
+    </>
+  );
+}
+
+/** The wordmark rolls from English to Arabic and back once as the page opens, then shows Arabic while a mouse or the keyboard is on it. */
+function Wordmark() {
+  const { calm, ready } = useMotion();
+  const roll = useRoll<"en" | "ar">("en");
+  const intro = useRef(false);
+  const over = useRef(false);
+  const { go } = roll;
+  const sync = () => go(intro.current || over.current ? "ar" : "en");
+
+  useEffect(() => {
+    if (!ready || calm) return;
+    const toArabic = window.setTimeout(() => {
+      intro.current = true;
+      go("ar");
+    }, 1300);
+    const back = window.setTimeout(() => {
+      intro.current = false;
+      go(over.current ? "ar" : "en");
+    }, 3900);
+    return () => {
+      window.clearTimeout(toArabic);
+      window.clearTimeout(back);
+    };
+  }, [ready, calm, go]);
+
+  const moving = ready && !calm;
+  const enter = (e: PointerEvent) => {
+    if (!moving || e.pointerType === "touch") return;
+    over.current = true;
+    sync();
+  };
+  const leave = () => {
+    if (!moving) return;
+    over.current = false;
+    sync();
+  };
+  const focus = (e: FocusEvent<HTMLAnchorElement>) => {
+    if (!moving) return;
+    try {
+      over.current = e.currentTarget.matches(":focus-visible");
+    } catch {
+      over.current = true;
+    }
+    sync();
+  };
+
+  return (
+    <a className="lp-logo" href="#top" aria-label="Quru, back to the top" onPointerEnter={enter} onPointerLeave={leave} onFocus={focus} onBlur={leave}>
+      <LogoMark />
+      <span className="lp-logo-roll" aria-hidden="true">
+        <span className={cx("lp-logo-ar", roll.classFor("ar"))} lang="ar" dir="rtl">
+          قروء
+        </span>
+        <span className={cx("lp-logo-en", roll.classFor("en"))}>Quru</span>
+      </span>
+    </a>
+  );
+}

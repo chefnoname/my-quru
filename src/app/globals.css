@@ -1,0 +1,416 @@
+/* Quru landing page styles. Class prefixes: qu- for the Quru design kit's components, lp- for this page. */
+
+/* Colours: the Lilac palette, the founder's final choice (14 Nov 2026). The page stays light at all times. */
+:root {
+  --surface: #fbf5ee;
+  --surface-raised: #fffcf8;
+  --surface-sunken: #f3eaf7;
+  --line: #e8dce6;
+  --line-strong: #8e7a8b;
+  --ink: #3a2723;
+  --ink-muted: #6c554f;
+  --brand: #6e4aa5;
+  --brand-hover: #5a3a8c;
+  --brand-soft: #ebe1f6;
+  --on-brand: #ffffff;
+  --refer: #2a6a8e;
+  --refer-soft: #dcedf6;
+  --hayd: #b5305f;
+  --hayd-soft: #fbdfe8;
+  --band: #f9e3ea;
+  --wash: #f4e6f6;
+  --art-a: #d9c4f0;
+  --art-b: #f6b8cb;
+  --art-c: #bfddf0;
+  --logo-a: #6e4aa5;
+  --logo-b: #e0709a;
+  --danger: #a83a12;
+  --danger-soft: #f8e6dc;
+  --tint-pink: #fbdde6;
+  --tint-lilac: #ebe1f6;
+  --tint-sky: #dcedf6;
+  --tint-cream: #fbe3d3;
+  --shadow-sm: 0 1px 2px #3a27230f, 0 1px 3px #3a272314;
+  --shadow-lg: 0 8px 16px #3a272312, 0 20px 44px -6px #3a272322;
+  --focus-ring: 0 0 0 2px #fbf5ee, 0 0 0 4px #6e4aa5;
+  color-scheme: light;
+}
+
+:root {
+  --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; --space-6:24px; --space-8:32px; --space-12:48px; --space-16:64px;
+  --radius-sm:8px; --radius-md:14px; --radius-lg:24px; --radius-xl:36px; --radius-full:9999px;
+  --font-display:var(--font-markazi), var(--font-readex), Georgia, serif;
+  --font-sans:var(--font-readex), system-ui, -apple-system, "Segoe UI", sans-serif;
+  --gutter:clamp(16px, 4vw, 40px);
+  --ease-out:cubic-bezier(.2, .7, .2, 1);
+  --ease-pop:cubic-bezier(.3, 1.45, .5, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--surface); color: var(--ink); font: 400 16px/26px var(--font-sans); -webkit-font-smoothing: antialiased; }
+[hidden] { display: none !important; }
+img, svg { max-width: 100%; }
+a { color: var(--brand); text-underline-offset: 4px; }
+a:hover { color: var(--brand-hover); }
+a:focus-visible, summary:focus-visible, button:focus-visible, [tabindex="-1"]:focus-visible { outline: 2px solid transparent; outline-offset: 2px; border-radius: var(--radius-sm); box-shadow: var(--focus-ring); }
+h1, h2, h3, p, ol, ul, dl, dd, blockquote, figure { margin: 0; }
+ol, ul { padding: 0; list-style: none; }
+html { scroll-padding-top: 72px; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+form[id] { scroll-margin-top: var(--space-6); }
+
+/* ---------- Components ---------- */
+.qu-btn:focus-visible, .qu-input:focus-visible { outline: 2px solid transparent; outline-offset: 2px; box-shadow: var(--focus-ring); }
+.qu-btn { appearance: none; display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2); min-height: 52px; padding: var(--space-2) 28px; border-radius: var(--radius-full); border: 1.5px solid var(--line-strong); background: var(--surface-raised); color: var(--ink); font: 500 16px/24px var(--font-sans); text-align: center; text-decoration: none; cursor: pointer; transition: background-color .15s ease, border-color .15s ease, translate .2s var(--ease-out), scale .15s ease, box-shadow .2s ease; }
+.qu-btn:hover { border-color: var(--ink); color: var(--ink); }
+.qu-btn-primary { background: var(--brand); border-color: var(--brand); color: var(--on-brand); box-shadow: var(--shadow-sm); }
+.qu-btn-primary:hover { background: var(--brand-hover); border-color: var(--brand-hover); color: var(--on-brand); }
+.qu-btn-text { padding: 0 var(--space-2); background: transparent; border-color: transparent; color: var(--brand); text-decoration: underline; text-underline-offset: 4px; }
+.qu-btn-text:hover { border-color: transparent; color: var(--brand-hover); }
+.qu-btn-block { display: flex; width: 100%; }
+.qu-btn[disabled] { opacity: .6; cursor: progress; }
+
+.qu-field { display: grid; gap: var(--space-2); align-content: start; }
+.qu-label { font: 500 16px/24px var(--font-sans); color: var(--ink); }
+.qu-input { appearance: none; width: 100%; min-height: 52px; padding: 0 var(--space-4); border-radius: var(--radius-md); border: 1.5px solid var(--line-strong); background: var(--surface-raised); color: var(--ink); font: 400 16px/24px var(--font-sans); }
+.qu-input:hover { border-color: var(--ink); }
+.qu-input[aria-invalid="true"] { border: 2px solid var(--danger); }
+.qu-select { position: relative; display: block; }
+.qu-select select { padding-right: 44px; cursor: pointer; }
+.qu-select::after { content: ""; position: absolute; top: 50%; right: 20px; width: 9px; height: 9px; margin-top: -7px; border-right: 2px solid var(--ink); border-bottom: 2px solid var(--ink); transform: rotate(45deg); pointer-events: none; }
+.qu-help { font: 400 14px/22px var(--font-sans); color: var(--ink-muted); }
+.qu-error { display: flex; align-items: flex-start; gap: var(--space-2); font: 500 14px/22px var(--font-sans); color: var(--ink); }
+.qu-error svg { width: 18px; height: 18px; flex: none; margin-top: 2px; color: var(--danger); }
+
+.qu-choices { display: grid; gap: var(--space-3); min-width: 0; margin: 0; padding: 0; border: 0; }
+.qu-choices legend { margin-bottom: var(--space-2); padding: 0; font: 500 16px/24px var(--font-sans); color: var(--ink); }
+.qu-choice { display: flex; align-items: flex-start; gap: var(--space-3); min-height: 52px; padding: 14px var(--space-4); border-radius: var(--radius-md); border: 1.5px solid var(--line-strong); background: var(--surface-raised); cursor: pointer; transition: background-color .15s ease, border-color .15s ease; }
+.qu-choice:hover { border-color: var(--ink); }
+.qu-choice input { appearance: none; flex: none; width: 20px; height: 20px; margin: 2px 0 0; border-radius: var(--radius-full); border: 1.5px solid var(--line-strong); background: var(--surface-raised); cursor: pointer; outline: none; }
+.qu-choice input[type="checkbox"] { border-radius: 6px; }
+.qu-choice input[type="radio"]:checked { border: 6px solid var(--brand); background: var(--on-brand); }
+.qu-choice input[type="checkbox"]:checked { border-color: var(--brand); background: var(--brand); }
+.qu-choice input[type="checkbox"]:checked::before { content: ""; display: block; width: 100%; height: 100%; background: var(--on-brand); clip-path: polygon(16% 52%, 26% 42%, 42% 58%, 74% 24%, 84% 34%, 42% 78%); }
+.qu-choice:has(input:checked) { border-color: var(--brand); background: var(--brand-soft); }
+.qu-choice:has(input:focus-visible) { box-shadow: var(--focus-ring); }
+.qu-choice-title { display: block; font: 500 16px/24px var(--font-sans); color: var(--ink); }
+.qu-choice-note { display: block; font: 400 14px/22px var(--font-sans); color: var(--ink-muted); }
+.qu-choice:has(input:checked) .qu-choice-note { color: var(--ink); }
+
+.qu-status { position: relative; display: inline-flex; align-items: center; gap: var(--space-2); min-height: 30px; padding: 0 var(--space-3) 0 var(--space-2); border-radius: var(--radius-full); border: 1px solid transparent; font: 500 14px/20px var(--font-sans); white-space: nowrap; }
+.qu-status::before { content: ""; flex: none; width: 14px; height: 14px; border-radius: var(--radius-full); }
+.qu-status-confirmed { background: var(--brand-soft); color: var(--brand); }
+.qu-status-confirmed::before { background: var(--brand); }
+.qu-status-confirmed::after { content: ""; position: absolute; left: calc(var(--space-2) + 4px); top: 50%; width: 8px; height: 8px; margin-top: -4px; background: var(--on-brand); clip-path: polygon(8% 52%, 22% 38%, 41% 57%, 78% 18%, 92% 32%, 41% 85%); }
+
+/* A month, with a cross on each day of bleeding */
+.qu-cal { display: grid; gap: 2px; padding: var(--space-2) var(--space-2) 0; border-radius: var(--radius-md); background: var(--hayd-soft); }
+.qu-cal-week, .qu-cal-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); justify-items: center; }
+.qu-cal-week span { font: 500 11px/20px var(--font-sans); letter-spacing: .04em; color: var(--ink-muted); }
+.qu-cal-grid { row-gap: 1px; }
+.qu-cal-day { position: relative; z-index: 0; display: grid; place-items: center; width: 30px; height: 30px; font: 500 13px/1 var(--font-sans); color: var(--ink); }
+.qu-cal-day svg, .qu-cal-key svg { fill: none; stroke: var(--hayd); stroke-width: 2.4; stroke-linecap: round; }
+.qu-cal-day svg { position: absolute; inset: 0; width: 30px; height: 30px; }
+.qu-cal-day.is-bleed { color: var(--ink-muted); }
+.qu-cal-day.is-today { font-weight: 600; }
+.qu-cal-day.is-today::before { content: ""; position: absolute; z-index: -1; inset: 0; border-radius: 50%; background: var(--art-c); }
+.qu-cal-key { display: flex; justify-content: center; gap: var(--space-6); margin-top: var(--space-1); padding-block: var(--space-2); border-top: 1px solid var(--line); font: 500 12px/16px var(--font-sans); color: var(--ink-muted); }
+.qu-cal-key span { display: inline-flex; align-items: center; gap: 6px; }
+.qu-cal-key svg { width: 16px; height: 16px; stroke-width: 3.4; }
+.qu-cal-key i { width: 12px; height: 12px; border-radius: 50%; background: var(--art-c); }
+
+.qu-notice { display: flex; align-items: flex-start; gap: var(--space-3); padding: var(--space-4); border-radius: var(--radius-md); background: var(--tint-sky); color: var(--ink); font: 400 14px/22px var(--font-sans); }
+.qu-notice svg { flex: none; width: 20px; height: 20px; margin-top: 1px; color: var(--ink); }
+.qu-notice strong { font-weight: 600; }
+.qu-notice-danger { background: var(--danger-soft); }
+.qu-notice-danger svg { color: var(--danger); }
+
+/* ---------- Page ---------- */
+#top { background: linear-gradient(180deg, var(--wash) 0, var(--surface) 780px) no-repeat; }
+.lp-wrap { width: 100%; max-width: 1160px; margin-inline: auto; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.lp-section { padding-block: clamp(48px, 8vw, 104px); }
+.lp-h2 { font: 600 clamp(38px, 6.2vw, 56px)/1 var(--font-display); letter-spacing: -.005em; text-wrap: balance; }
+.lp-h3 { font: 600 20px/28px var(--font-sans); }
+.lp-lead { font: 400 18px/30px var(--font-sans); color: var(--ink); max-width: 58ch; }
+.lp-fine { font: 400 14px/22px var(--font-sans); color: var(--ink-muted); }
+.lp-head { display: grid; gap: var(--space-4); margin-bottom: clamp(28px, 4.5vw, 48px); }
+.lp-head .lp-h2 { max-width: 17em; }
+.lp-kicker { font: 600 13px/20px var(--font-sans); letter-spacing: .08em; text-transform: uppercase; color: var(--brand); }
+
+/* Preview strip, with the palettes to try */
+.lp-preview { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: var(--space-2) var(--space-6); padding: var(--space-2) var(--gutter); border-bottom: 1px solid var(--line); background: var(--surface-raised); color: var(--ink); font: 500 13px/20px var(--font-sans); text-align: center; }
+
+/* Header: the wordmark shows in Arabic first, then rolls into English */
+.lp-top-mark { height: 1px; margin-bottom: -1px; }
+.lp-top { position: sticky; top: 0; z-index: 30; background: var(--surface); background: color-mix(in srgb, var(--surface) 86%, transparent); -webkit-backdrop-filter: blur(14px) saturate(1.3); backdrop-filter: blur(14px) saturate(1.3); box-shadow: 0 1px 0 var(--line); }
+.lp-top.is-top { background: transparent; -webkit-backdrop-filter: none; backdrop-filter: none; box-shadow: none; }
+.lp-top-in { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); padding-block: var(--space-3); }
+.lp-top.at-join .qu-btn { opacity: 0; visibility: hidden; }
+@media print { .lp-top { position: static; } }
+.lp-logo { display: inline-flex; align-items: center; gap: 10px; min-height: 48px; color: var(--ink); text-decoration: none; font: 600 38px/1 var(--font-display); }
+.lp-logo:hover { color: var(--ink); }
+.lp-logo svg { width: 36px; height: 36px; flex: none; }
+.lp-logo-roll { display: inline-grid; height: 48px; overflow: hidden; }
+.lp-logo-roll > span { grid-area: 1 / 1; justify-self: start; padding-top: 2px; line-height: 46px; white-space: nowrap; }
+.lp-logo-ar { opacity: 0; }
+@media (hover: hover) { :root:not(.lp-motion) .lp-logo:hover .lp-logo-ar { opacity: 1; } :root:not(.lp-motion) .lp-logo:hover .lp-logo-en { opacity: 0; } }
+.lp-logo .a, .lp-foot .a { fill: var(--logo-a); } .lp-logo .b, .lp-foot .b { fill: var(--logo-b); }
+.lp-top .qu-btn { min-height: 44px; padding-inline: 20px; }
+
+/* Hero */
+.lp-hero { overflow: clip; }
+.lp-hero-grid { display: grid; gap: var(--space-8); align-items: center; padding-block: clamp(20px, 4vw, 56px) clamp(48px, 7vw, 96px); }
+.lp-hero-copy { display: grid; gap: var(--space-6); justify-items: start; min-width: 0; }
+.lp-def { display: inline-flex; align-items: center; gap: var(--space-3); max-width: 100%; padding: 6px 20px 6px 16px; border-radius: var(--radius-lg); border: 1px solid var(--line); background: var(--surface-raised); }
+.lp-def-ar { flex: none; padding-bottom: 6px; font: 600 42px/1 var(--font-display); color: var(--brand); }
+.lp-def-body { display: grid; min-width: 0; }
+.lp-def-word { font: 400 13px/18px var(--font-sans); color: var(--ink-muted); }
+.lp-def-word b { font-weight: 600; color: var(--ink); }
+.lp-def-mean { font: 400 14px/20px var(--font-sans); color: var(--ink); }
+.lp-h1 { font: 600 clamp(56px, 20.5vw, 112px)/.9 var(--font-display); letter-spacing: -.015em; }
+.lp-rot { display: grid; width: 100%; }
+/* 4.3em holds the longest line of any question, so every question breaks into two lines on every screen */
+.lp-rot-item { grid-area: 1 / 1; justify-self: start; max-width: 4.3em; visibility: hidden; opacity: 0; text-wrap: balance; }
+.lp-rot-item.is-on { visibility: visible; opacity: 1; }
+.lp-mark { padding-inline: .05em; margin-inline: -.05em; border-radius: .12em; white-space: nowrap; background: linear-gradient(transparent 47%, var(--art-b) 47% 75%, transparent 75%) no-repeat 0 0 / 100% 100%; }
+.lp-rot-ctl { display: flex; align-items: center; gap: var(--space-2); margin-block: calc(var(--space-3) * -1); }
+.lp-rot-dots { display: flex; align-items: center; gap: 6px; }
+.lp-rot-dots i { position: relative; overflow: hidden; width: 8px; height: 8px; border-radius: var(--radius-full); background: var(--line-strong); opacity: .45; transition: width .45s var(--ease-out), background-color .3s ease, opacity .3s ease; }
+.lp-rot-dots i.is-on { width: 26px; background: var(--brand); opacity: 1; }
+.lp-rot-dots b { position: absolute; inset: 0; border-radius: inherit; background: var(--brand); visibility: hidden; }
+.lp-pause { appearance: none; display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 0; border-radius: var(--radius-full); background: transparent; color: var(--ink-muted); cursor: pointer; transition: background-color .15s ease, color .15s ease; }
+.lp-pause:hover { background: var(--surface-sunken); color: var(--ink); }
+.lp-pause:focus-visible { border-radius: var(--radius-full); }
+.lp-pause span { display: grid; }
+.lp-pause svg { width: 16px; height: 16px; fill: currentColor; }
+.lp-ico-play, .is-paused .lp-ico-pause { display: none !important; }
+.is-paused .lp-ico-play { display: grid !important; }
+.lp-cta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-4); }
+.lp-hero-art { position: relative; padding-top: clamp(80px, 9vw, 104px); }
+.lp-disc { position: absolute; top: 0; right: clamp(-96px, -9vw, -48px); width: clamp(264px, 46vw, 452px); height: auto; }
+.lp-disc .a { fill: var(--art-a); } .lp-disc .b { fill: var(--art-b); }
+.lp-dot { position: absolute; top: clamp(0px, 1vw, 12px); left: clamp(8px, 4vw, 40px); width: clamp(56px, 11vw, 112px); aspect-ratio: 1; border-radius: 50%; background: var(--art-c); }
+.lp-answer { position: relative; display: grid; gap: var(--space-4); max-width: 408px; padding: var(--space-6); border-radius: 28px; border: 1px solid var(--line); background: var(--surface-raised); box-shadow: var(--shadow-lg); }
+.lp-answer-kicker { display: flex; justify-content: space-between; gap: var(--space-3); font: 500 12px/16px var(--font-sans); letter-spacing: .02em; color: var(--ink-muted); }
+.lp-answer-title { font: 600 42px/40px var(--font-display); letter-spacing: -.005em; text-wrap: balance; }
+.lp-answer-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-2) var(--space-3); padding-top: var(--space-4); border-top: 1px solid var(--line); font: 500 12px/16px var(--font-sans); letter-spacing: .02em; color: var(--ink-muted); }
+.lp-answer-note { position: relative; max-width: 408px; margin-top: var(--space-3); }
+@media (min-width: 920px) { .lp-hero-grid { grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr); gap: var(--space-16); } }
+
+/* The problem band: the app in three phones beside the words */
+.lp-band { padding-block: 0 clamp(48px, 8vw, 104px); }
+.lp-band-panel { display: grid; gap: var(--space-8); padding: clamp(28px, 5.5vw, 72px); border-radius: var(--radius-xl); background: var(--band); overflow: clip; }
+.lp-band-side { display: grid; gap: var(--space-4); align-content: start; }
+.lp-band-side .lp-h2 { margin-bottom: var(--space-2); }
+.lp-band-side > p { color: var(--ink); }
+.lp-band-art { display: grid; gap: var(--space-3); justify-items: center; margin-inline: calc(clamp(28px, 5.5vw, 72px) * -.85); }
+.lp-band-art img { display: block; width: 100%; max-width: 640px; height: auto; filter: drop-shadow(0 22px 28px color-mix(in srgb, var(--ink) 20%, transparent)); }
+.lp-band-art figcaption { justify-self: center; }
+@media (min-width: 920px) {
+  .lp-band-panel { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: var(--space-8) var(--space-12); align-items: center; padding-right: clamp(24px, 3vw, 44px); }
+  .lp-band-side { grid-column: 1; grid-row: 1; }
+  .lp-band-art { grid-column: 2; grid-row: 1; margin: 0; }
+}
+
+/* What the app will do */
+.lp-alt { background: var(--surface-sunken); }
+.lp-ico { display: grid; place-items: center; width: 48px; height: 48px; margin-bottom: var(--space-2); border-radius: 50%; background: var(--tint-pink); color: var(--ink); }
+
+/* The name of the engine, explained where it is written */
+.lp-tm { margin-left: .04em; font-family: var(--font-sans); font-weight: 400; }
+.lp-term { appearance: none; display: inline-block; margin: 0; padding: 0; border: 0; border-radius: 6px; background: none; color: inherit; font: inherit; letter-spacing: inherit; white-space: nowrap; cursor: help; -webkit-tap-highlight-color: transparent; }
+.lp-term-w { text-decoration: underline dotted var(--brand); text-decoration-thickness: max(1.5px, .07em); text-underline-offset: .2em; }
+.lp-term:hover .lp-term-w, .lp-term:focus-visible .lp-term-w { text-decoration-style: solid; }
+.lp-term svg { width: .82em; height: .82em; margin-left: .22em; vertical-align: -.08em; color: var(--brand); stroke-width: 2.2; }
+.lp-tip { position: absolute; z-index: 40; top: 0; left: 0; width: max-content; max-width: min(320px, calc(100vw - 24px)); padding: 12px var(--space-4); border-radius: var(--radius-md); background: var(--ink); color: var(--surface-raised); font: 400 14px/22px var(--font-sans); text-align: left; box-shadow: var(--shadow-lg); opacity: 0; pointer-events: none; }
+.lp-tip.is-on { opacity: 1; pointer-events: auto; }
+.lp-tip b { font-weight: 600; }
+.lp-tip::after { content: ""; position: absolute; left: var(--ax, 50%); top: 100%; width: 12px; height: 12px; margin: -6px 0 0 -6px; border-radius: 2px; background: inherit; rotate: 45deg; }
+.lp-tip[data-below]::after { top: 0; }
+
+.lp-private-list { display: grid; gap: var(--space-4); padding: var(--space-6); border-radius: 28px; border: 1px solid var(--line); background: var(--surface-raised); }
+.lp-private-list li { display: flex; align-items: flex-start; gap: var(--space-3); }
+.lp-private-list svg { flex: none; width: 20px; height: 20px; margin-top: 3px; color: var(--brand); }
+@media (min-width: 920px) {.lp-private-list { padding: var(--space-8); } }
+
+/* Prices */
+.lp-nopay { max-width: 720px; border-radius: var(--radius-lg); }
+.lp-options { display: grid; gap: var(--space-4); align-items: stretch; }
+.lp-option { display: grid; grid-template-rows: auto auto auto 1fr auto; gap: var(--space-4); padding: var(--space-6); border-radius: 28px; border: 1px solid var(--line); background: var(--surface-raised); }
+.lp-option-featured { border: 2px solid var(--brand); box-shadow: var(--shadow-lg); }
+.lp-option-name { display: flex; flex-wrap: wrap; align-items: flex-start; align-content: flex-start; justify-content: space-between; gap: var(--space-2); min-height: 28px; font: 600 20px/28px var(--font-sans); }
+.lp-tag { padding: 2px var(--space-3); border-radius: var(--radius-full); background: var(--brand-soft); color: var(--brand); font: 500 13px/24px var(--font-sans); }
+.lp-price { display: flex; align-items: baseline; gap: var(--space-3); }
+.lp-price b { font: 600 76px/60px var(--font-display); letter-spacing: -.01em; }
+.lp-price span { font: 400 14px/22px var(--font-sans); color: var(--ink-muted); }
+.lp-ticks { display: grid; gap: var(--space-3); align-content: start; padding-top: var(--space-4); border-top: 1px solid var(--line); }
+.lp-ticks li { display: flex; align-items: flex-start; gap: var(--space-3); }
+.lp-ticks svg { flex: none; width: 20px; height: 20px; margin-top: 3px; color: var(--brand); }
+.lp-options-note { margin-top: var(--space-6); max-width: 720px; border-radius: var(--radius-lg); background: var(--tint-pink); }
+@media (min-width: 920px) { .lp-options { grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: repeat(5, auto); gap: 0 var(--space-6); } .lp-option { grid-row: span 5; grid-template-rows: subgrid; row-gap: var(--space-4); padding: var(--space-8); } }
+
+/* Questions */
+.lp-faq { max-width: 800px; padding: var(--space-2) var(--space-6); border-radius: 28px; border: 1px solid var(--line); background: var(--surface-raised); }
+.lp-faq details + details { border-top: 1px solid var(--line); }
+.lp-faq summary { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); min-height: 64px; padding-block: var(--space-4); cursor: pointer; list-style: none; font: 500 18px/26px var(--font-sans); }
+.lp-faq summary::-webkit-details-marker { display: none; }
+.lp-faq summary::after { content: ""; flex: none; width: 14px; height: 14px; background: linear-gradient(var(--brand), var(--brand)) center / 100% 2px no-repeat, linear-gradient(var(--brand), var(--brand)) center / 2px 100% no-repeat; }
+.lp-faq summary:hover { color: var(--brand); }
+.lp-faq details[open]:not(.is-closing) summary { color: var(--brand); }
+.lp-faq details[open]:not(.is-closing) summary::after { background-size: 100% 2px, 2px 0%; rotate: 180deg; }
+.lp-faq-a { display: grid; grid-template-rows: 1fr; }
+.lp-faq-a > div { min-height: 0; overflow: hidden; }
+.lp-faq details p { max-width: 64ch; padding-bottom: var(--space-6); }
+
+/* Form */
+.lp-join-grid { display: grid; gap: var(--space-8); }
+.lp-join-copy { display: grid; gap: var(--space-6); align-content: start; }
+.lp-form { display: grid; gap: var(--space-8); padding: var(--space-6) var(--space-4); border-radius: 28px; border: 1px solid var(--line); background: var(--surface); box-shadow: var(--shadow-sm); }
+.lp-form .qu-help, .lp-form .qu-error { margin-bottom: var(--space-1); }
+.lp-inline { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+.lp-inline .qu-choice { flex: 1 1 auto; }
+.lp-pair-fields { display: grid; gap: var(--space-3); }
+.lp-pair-fields { gap: var(--space-8) var(--space-4); }
+@media (min-width: 520px) {.lp-pair-fields { grid-template-columns: minmax(0, 1fr) 190px; } .lp-form { padding: var(--space-8); } }
+.lp-summary ul { display: grid; gap: 2px; margin-top: var(--space-1); }
+.lp-summary a { color: var(--ink); }
+.lp-submit { display: grid; gap: var(--space-3); }
+.lp-done { display: grid; gap: var(--space-4); padding: var(--space-8) var(--space-6); border-radius: 28px; border: 2px solid var(--brand); background: var(--surface); }
+.lp-done h3 { font: 600 44px/44px var(--font-display); }
+@media (min-width: 920px) { .lp-join-grid { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: var(--space-16); } .lp-join-copy { position: sticky; top: var(--space-8); } }
+
+/* Footer */
+.lp-foot { padding-block: var(--space-12); border-top: 1px solid var(--line); background: var(--surface); }
+.lp-foot-grid { display: grid; gap: var(--space-4); justify-items: start; }
+.lp-foot svg { width: 32px; height: 32px; }
+
+/* ---------- Your cycle, learned ---------- */
+#cycle { overflow: clip; }
+
+/* ---------- Motion. All of it is switched off for anyone who asks their device for less movement. ---------- */
+@keyframes lp-rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+@keyframes lp-pop { from { opacity: 0; transform: translateY(8px) scale(.85); } to { opacity: 1; transform: none; } }
+@keyframes lp-fill { from { opacity: .3; transform: scaleX(0); } to { opacity: 1; transform: scaleX(1); } }
+@keyframes lp-arrive { 0% { opacity: 0; transform: scale(.5); } 65% { opacity: 1; transform: scale(1.05); } 100% { opacity: 1; transform: scale(1); } }
+@keyframes lp-float-a { from { translate: 0 0; } to { translate: 0 -12px; } }
+@keyframes lp-float-b { from { translate: 0 0; } to { translate: 6px 10px; } }
+@keyframes lp-fill { from { clip-path: inset(0 100% 0 0 round 4px); } to { clip-path: inset(0 0 0 0 round 4px); } }
+@keyframes lp-sweep { from { background-size: 0% 100%; } to { background-size: 100% 100%; } }
+@keyframes lp-draw { 0% { stroke-dashoffset: 1; opacity: 0; } 4% { opacity: 1; } 100% { stroke-dashoffset: 0; opacity: 1; } }
+@keyframes lp-fade { to { opacity: 0; } }
+
+@media (prefers-reduced-motion: no-preference) {
+  /* The wordmark: English. It rolls round to Arabic and back once when the page opens (the script times this), and after
+     that it rolls to Arabic while a mouse is on it. Quick, so it answers the hand. */
+  .lp-motion .lp-logo-roll > span { opacity: 0; transform: translateY(70%); transition: opacity .22s ease, transform .5s var(--ease-out); }
+  .lp-motion .lp-logo-roll > span.is-on { opacity: 1; transform: none; transition-duration: .4s, .55s; transition-delay: .12s, .08s; }
+  .lp-motion .lp-logo-roll > span.is-out { transform: translateY(-70%); }
+
+  /* The hero copy rises in, one line after another */
+  .lp-hero-copy > * { animation: lp-rise .7s var(--ease-out) both; }
+  .lp-hero-copy > :nth-child(1) { animation-delay: .05s; }
+  .lp-hero-copy > :nth-child(2) { animation-delay: .15s; }
+  .lp-hero-copy > :nth-child(3) { animation-delay: .3s; }
+  .lp-hero-copy > :nth-child(4) { animation-delay: .3s; }
+  .lp-hero-copy > :nth-child(5) { animation-delay: .42s; }
+  .lp-hero-copy > :nth-child(6) { animation-delay: .54s; }
+
+  /* The rotating question: one rolls up and out as the next rolls in, then its last words are underlined */
+  .lp-motion .lp-rot-item { transform: translateY(.32em); transition: opacity .4s ease, transform .8s var(--ease-out), visibility 0s .8s; }
+  .lp-motion .lp-rot-item.is-on { transform: none; transition-duration: .65s, .85s, 0s; transition-delay: .34s, .28s, 0s; }
+  .lp-motion .lp-rot-item.is-out { transform: translateY(-.32em); }
+  .lp-motion .lp-rot-item.is-on .lp-mark { animation: lp-sweep .85s .8s cubic-bezier(.3, .7, .2, 1) both; }
+  /* The active dot is a pill with a soft track that fills with rose over the question's time */
+  .lp-motion .lp-rot-dots i.is-on { width: 40px; background: var(--art-a); }
+  .lp-motion .lp-rot-dots i.is-on b { visibility: visible; animation: lp-fill calc(var(--q, 5200ms) - 300ms) linear .3s both; }
+  .is-paused .lp-rot-dots i.is-on b, .is-held .lp-rot-dots i.is-on b { animation-play-state: paused; }
+
+  /* The example answer: the card arrives, a cross is drawn on each day of bleeding in turn, today lights up, the two circles
+     come in, and then the answer. The crosses are drawn again when a mouse comes over the card (the script adds the classes). */
+  .lp-answer { animation: lp-rise .7s .2s var(--ease-out) both; }
+  .lp-answer .qu-cal-day path { stroke-dasharray: 1; animation: lp-draw .26s cubic-bezier(.4, 0, .2, 1) both; animation-delay: calc(.9s + var(--i, 0) * .17s); }
+  .lp-answer .qu-cal-day path + path { animation-delay: calc(1.03s + var(--i, 0) * .17s); }
+  .lp-answer .is-today::before { animation: lp-arrive .5s 2.25s var(--ease-out) both; }
+  .lp-disc { transform-origin: 50% 50%; animation: lp-arrive .9s 2.4s var(--ease-out) both, lp-float-a 7s 3.5s ease-in-out infinite alternate; }
+  .lp-dot { animation: lp-arrive .8s 2.65s var(--ease-out) both, lp-float-b 6s 3.6s ease-in-out infinite alternate; }
+  .lp-answer-title { animation: lp-rise .6s 2.5s var(--ease-out) both; }
+  .lp-answer-text { animation: lp-rise .6s 2.65s var(--ease-out) both; }
+  .lp-answer-foot { animation: lp-rise .6s 2.8s var(--ease-out) both; }
+  .lp-answer-note { animation: lp-rise .6s 2.95s var(--ease-out) both; }
+  .is-paused .lp-disc, .is-paused .lp-dot { animation-play-state: running, paused; }
+  /* Held until the card is on screen, so on a phone it plays after the scroll rather than out of sight */
+  .lp-wait .lp-hero-art:not(.is-seen) :is(.lp-answer, .lp-answer *, .lp-disc, .lp-dot), .lp-wait .lp-hero-art:not(.is-seen) .lp-answer *::before { animation-play-state: paused !important; }
+  .lp-answer.is-refill .qu-cal-day path { animation-delay: calc(.04s + var(--i, 0) * .13s); }
+  .lp-answer.is-refill .qu-cal-day path + path { animation-delay: calc(.15s + var(--i, 0) * .13s); }
+  .lp-answer.is-emptying .qu-cal-day svg { animation: lp-fade .16s ease both; }
+  .lp-answer.is-emptying .qu-cal-day path { animation: none; }
+
+  .lp-top { transition: background-color .25s ease, box-shadow .25s ease; }
+  .lp-top .qu-btn { transition: background-color .2s ease, border-color .2s ease, color .2s ease, translate .2s var(--ease-out), scale .15s ease, box-shadow .2s ease, opacity .2s ease, visibility .2s; }
+  .lp-tip { translate: 0 5px; transition: opacity .16s ease, translate .22s var(--ease-out); }
+  .lp-tip[data-below] { translate: 0 -5px; }
+  .lp-tip.is-on { translate: 0 0; }
+
+  /* Sections rise as they come into view, and the items inside a group follow one another */
+  .lp-reveal [data-reveal] { opacity: 0; transform: translateY(22px); transition: opacity .6s ease calc(var(--d, 0) * 80ms), transform .75s var(--ease-out) calc(var(--d, 0) * 80ms), translate .25s var(--ease-out), box-shadow .25s ease; }
+  .lp-reveal [data-reveal].is-in { opacity: 1; transform: none; }
+  .lp-reveal .lp-band-art[data-reveal] { transform: translateY(40px) scale(.96); transition-duration: .8s, 1.1s; transition-delay: .15s; }
+  .lp-reveal .lp-band-art[data-reveal].is-in { transform: none; }
+
+  /* Narrations: the one on show fades out towards the side it leaves by and the next fades in from the side the arrow points
+     to. The two never show at once. On phones the script eases the panel to its new height at the same time. */
+
+  /* Small responses to the hand */
+  .qu-btn:hover { translate: 0 -2px; }
+  .qu-btn:active { translate: 0 0; scale: .97; }
+  .qu-btn-primary:hover { box-shadow: var(--shadow-lg); }
+  .lp-option { transition: translate .25s var(--ease-out), box-shadow .25s ease; }
+  .lp-option:hover { translate: 0 -4px; box-shadow: var(--shadow-lg); }
+  .qu-choice input { transition: border-width .15s ease, background-color .15s ease; }
+  .lp-faq summary { transition: color .2s ease; }
+  .lp-faq summary::after { transition: rotate .45s var(--ease-out), background-size .3s ease, scale .2s ease; }
+  .lp-faq summary:hover::after { scale: 1.2; }
+  .lp-motion .lp-faq-a { grid-template-rows: 0fr; opacity: 0; transition: grid-template-rows .45s var(--ease-out), opacity .3s ease; }
+  .lp-motion .lp-faq-a p { transform: translateY(-8px); transition: transform .45s var(--ease-out); }
+  .lp-motion .lp-faq .is-open .lp-faq-a { grid-template-rows: 1fr; opacity: 1; transition-delay: 0s, .08s; }
+  .lp-motion .lp-faq .is-open .lp-faq-a p { transform: none; }
+  .lp-done > * { animation: lp-rise .6s var(--ease-out) both; }
+  .lp-done > :nth-child(2) { animation: lp-pop .5s .15s var(--ease-pop) both; }
+  .lp-done > :nth-child(3) { animation-delay: .25s; }
+  .lp-done > :nth-child(4) { animation-delay: .35s; }
+  .qu-error, .lp-summary { animation: lp-rise .3s var(--ease-out) both; }
+}
+
+.lp-join-private { gap: var(--space-3); padding: var(--space-6); }
+
+/* Shorter page: TahaaraEngine and the cycle in one band, beside the iPhones */
+.lp-engine-list { display: grid; gap: var(--space-6); margin-top: var(--space-2); }
+.lp-engine-list li { display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: var(--space-4); align-items: start; }
+.lp-engine-list .lp-ico { margin: 0; background: var(--surface-raised); color: var(--brand); }
+.lp-engine-list li:nth-child(3) .lp-ico { color: var(--refer); }
+.lp-engine-list svg { width: 22px; height: 22px; }
+.lp-engine-list h3 { margin-bottom: var(--space-1); font: 600 18px/26px var(--font-sans); }
+.lp-engine-list p { color: var(--ink); }
+.lp-band-side > .lp-fine { margin-top: var(--space-2); }
+.lp-band-side > .lp-kicker { color: var(--brand); }
+
+/* Your own price: a card under the three, and two boxes in the form */
+.lp-option-own { display: grid; grid-template-rows: none; gap: var(--space-4); margin-top: var(--space-4); border: 1.5px dashed var(--line-strong); }
+.lp-option-own .lp-option-name { min-height: 0; margin-bottom: var(--space-2); }
+.lp-own-btns { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+@media (min-width: 920px) { .lp-option-own { grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: var(--space-8); margin-top: var(--space-6); padding: var(--space-8); } }
+.lp-own { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-3); padding: var(--space-4); border-radius: var(--radius-md); background: var(--surface-raised); border: 1px solid var(--line); }
+.lp-own[hidden] { display: none; }
+.lp-own .qu-field { min-width: 0; }
+.lp-own-amount { position: relative; display: block; }
+.lp-own-amount > span { position: absolute; left: var(--space-4); top: 50%; translate: 0 -50%; color: var(--ink-muted); pointer-events: none; }
+.lp-own-amount .qu-input { padding-left: 34px; }
+
+/* The engine band's headline runs across the whole box, above the points and the iPhones */
+.lp-engine-head { display: grid; gap: var(--space-4); }
+.lp-engine-head .lp-h2 { max-width: none; }
+@media (min-width: 920px) {
+  .lp-engine-panel .lp-engine-head { grid-column: 1 / -1; grid-row: 1; }
+  .lp-engine-panel .lp-band-side, .lp-engine-panel .lp-band-art { grid-row: 2; }
+}
