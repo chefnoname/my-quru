@@ -221,8 +221,9 @@ export function JoinForm() {
     );
   }
 
+  // data-clarity-mask: the answers are personal (age, place, cycle), so Clarity replays never show them.
   return (
-    <form className="lp-form" id="join-form" ref={form} noValidate onSubmit={onSubmit}>
+    <form className="lp-form" id="join-form" ref={form} noValidate onSubmit={onSubmit} data-clarity-mask="true">
       {problems && problems.length > 0 && (
         <div className="qu-notice qu-notice-danger lp-summary" ref={summary} role="alert" tabIndex={-1}>
           <CircleAlert />

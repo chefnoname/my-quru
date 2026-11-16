@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
-import { LIVE } from "@/lib/config";
+import Script from "next/script";
+import { CLARITY_ID, LIVE } from "@/lib/config";
 import "./globals.css";
 
 /* Both fonts are variable and served from this site, so the page never calls Google. Licences sit beside them. */
@@ -39,6 +40,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <script dangerouslySetInnerHTML={{ __html: 'document.documentElement.classList.add("lp-wait")' }} />
       </head>
       <body>{children}</body>
+      {/* Microsoft Clarity: heatmaps and session replays, only when NEXT_PUBLIC_CLARITY_ID is set. Loads after the page is interactive. */}
+      {CLARITY_ID && (
+        <Script id="ms-clarity" strategy="afterInteractive">
+          {`(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","${CLARITY_ID}");`}
+        </Script>
+      )}
     </html>
   );
 }
