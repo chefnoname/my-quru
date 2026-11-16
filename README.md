@@ -2,7 +2,7 @@
 
 The sign-up page for Quru, an app that tells Muslim sisters where they stand for prayer and fasting, learns their cycle, and puts a teacher in reach for the rest. The page asks for interest only. It takes no payment.
 
-Built with Next.js 16 (App Router), React 19 and TypeScript. It is one static page. Analytics (Microsoft Clarity) load only when `NEXT_PUBLIC_CLARITY_ID` is set.
+Built with Next.js 16 (App Router), React 19 and TypeScript. It is one static page, with Microsoft Clarity for heatmaps and session replays.
 
 ## Run it
 
@@ -22,13 +22,11 @@ None are needed to go live. To change one, copy `.env.example` to `.env.local`. 
 | `NEXT_PUBLIC_FORM_ENDPOINT` | Where the answers go. By default, Quru's Formspree form (`https://formspree.io/f/xvkakrqy`, set in `src/lib/config.ts`). Set another Formspree address to use a different form, or `off` for a design preview: the form sends nothing, the thank-you panel says so, and search engines are asked not to list the page. |
 | `NEXT_PUBLIC_CONTACT_EMAIL` | Shown on the thank-you panel. |
 | `NEXT_PUBLIC_SHOWCASE` | `true` for a copy to show investors: the form never sends, and the thank-you panel shows without a preview note. |
-| `NEXT_PUBLIC_CLARITY_ID` | Microsoft Clarity project ID. Turns on heatmaps and session replays, so you can see where visitors stop before the form. Empty means no analytics. Never loads when `NEXT_PUBLIC_SHOWCASE` is `true`. |
+| `NEXT_PUBLIC_CLARITY_ID` | Microsoft Clarity project, for heatmaps and session replays that show where visitors stop before the form. By default, Quru's project (`zeqcdd2y9f`, set in `src/lib/config.ts`). Set another ID, or `off` for no analytics. Never loads when `NEXT_PUBLIC_SHOWCASE` is `true`. |
 
 ### Analytics
 
-1. Sign in at [clarity.microsoft.com](https://clarity.microsoft.com), add a project with the site's address.
-2. Copy the project ID from Settings > Overview (the code after `/tag/` in the install snippet).
-3. Set `NEXT_PUBLIC_CLARITY_ID` on the host (on Vercel: Settings > Environment Variables) and redeploy.
+Clarity works with no setup: open the Quru project at [clarity.microsoft.com](https://clarity.microsoft.com) to see heatmaps and replays. Use `NEXT_PUBLIC_CLARITY_ID=off` in `.env.local` so your own visits during `npm run dev` aren't recorded.
 
 The sign-up form is masked (`data-clarity-mask`), so replays never show what a sister typed or picked. Clarity sets cookies, so a privacy notice should say the site uses it.
 
