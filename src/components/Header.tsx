@@ -5,9 +5,14 @@ import { cx } from "@/lib/cx";
 import { LogoMark } from "./LogoMark";
 import { useMotion, useRoll } from "./Motion";
 
+/** How far down the page the header starts to shrink, and over how many pixels it becomes a floating pill. */
+const MORPH_FROM = 24;
+const MORPH_OVER = 220;
+
 /**
- * The header stays in reach. It is see-through at the very top; its button fills in once the hero's button has
- * scrolled away, and steps aside while the form itself is on screen.
+ * The header stays in reach. It is see-through at the very top; as she scrolls it shrinks into a small floating
+ * pill (--nav-morph runs from 0 to 1). Its button fills in once the hero's button has scrolled away, and steps
+ * aside while the form itself is on screen.
  */
 export function Header() {
   const [atTop, setAtTop] = useState(true);
@@ -32,10 +37,32 @@ export function Header() {
     return () => observers.forEach((io) => io.disconnect());
   }, []);
 
+  const header = useRef<HTMLElement>(null);
+  useEffect(() => {
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const morph = Math.min(1, Math.max(0, (window.scrollY - MORPH_FROM) / MORPH_OVER));
+      header.current?.style.setProperty("--nav-morph", morph.toFixed(3));
+    };
+    const onScroll = () => {
+      if (!frame) frame = window.requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
+
   return (
     <>
       <div className="lp-top-mark" id="top-mark" aria-hidden="true" />
-      <header className={cx("lp-top", atTop && "is-top", atJoin && "at-join")} id="site-top">
+      <div className="lp-top-space" aria-hidden="true" />
+      <header className={cx("lp-top", atTop && "is-top", atJoin && "at-join")} id="site-top" ref={header}>
         <div className="lp-wrap lp-top-in">
           <Wordmark />
           <a className={cx("qu-btn", heroButtonGone && "qu-btn-primary")} href="#join">

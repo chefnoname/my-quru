@@ -142,11 +142,24 @@ form[id] { scroll-margin-top: var(--space-6); }
 
 /* Header: the wordmark shows in Arabic first, then rolls into English */
 .lp-top-mark { height: 1px; margin-bottom: -1px; }
-.lp-top { position: sticky; top: 0; z-index: 30; background: var(--surface); background: color-mix(in srgb, var(--surface) 86%, transparent); -webkit-backdrop-filter: blur(14px) saturate(1.3); backdrop-filter: blur(14px) saturate(1.3); box-shadow: 0 1px 0 var(--line); }
+/* The header is fixed, so a spacer holds its place. As she scrolls, --nav-morph (0 to 1, set by Header) narrows it
+   into a floating pill: lower, rounder, a little shorter, with a soft shadow. */
+.lp-top-space { height: 72px; }
+.lp-top {
+  --nav-morph: 0; --nav-pill: min(400px, calc(100vw - 24px));
+  position: fixed; top: calc(14px * var(--nav-morph)); left: 50%; translate: -50% 0; z-index: 30;
+  width: calc(100% * (1 - var(--nav-morph)) + var(--nav-pill) * var(--nav-morph));
+  border-radius: calc(40px * var(--nav-morph));
+  background: var(--surface); background: color-mix(in srgb, var(--raised, #fffcf8) 92%, transparent);
+  -webkit-backdrop-filter: blur(14px) saturate(1.3); backdrop-filter: blur(14px) saturate(1.3);
+  box-shadow: 0 1px 0 var(--line), 0 12px 32px rgb(58 39 35 / calc(.14 * var(--nav-morph)));
+  will-change: width, top, border-radius;
+}
 .lp-top.is-top { background: transparent; -webkit-backdrop-filter: none; backdrop-filter: none; box-shadow: none; }
-.lp-top-in { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); padding-block: var(--space-3); }
+.lp-top-in { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); height: calc(72px - 10px * var(--nav-morph)); }
+.lp-top .lp-wrap { padding-left: calc(max(var(--gutter), env(safe-area-inset-left, 0px)) * (1 - var(--nav-morph)) + 14px * var(--nav-morph)); padding-right: calc(max(var(--gutter), env(safe-area-inset-right, 0px)) * (1 - var(--nav-morph)) + 9px * var(--nav-morph)); }
 .lp-top.at-join .qu-btn { opacity: 0; visibility: hidden; }
-@media print { .lp-top { position: static; } }
+@media print { .lp-top { position: static; translate: none; width: auto; } .lp-top-space, .lp-intro { display: none; } }
 .lp-logo { display: inline-flex; align-items: center; gap: 10px; min-height: 48px; color: var(--ink); text-decoration: none; font: 600 38px/1 var(--font-display); }
 .lp-logo:hover { color: var(--ink); }
 .lp-logo svg { width: 36px; height: 36px; flex: none; }
@@ -173,6 +186,22 @@ form[id] { scroll-margin-top: var(--space-6); }
 .lp-rot-item { grid-area: 1 / 1; justify-self: start; max-width: 4.3em; visibility: hidden; opacity: 0; text-wrap: balance; }
 .lp-rot-item.is-on { visibility: visible; opacity: 1; }
 .lp-under { text-decoration: underline; text-decoration-color: var(--art-b); text-decoration-thickness: .1em; text-underline-offset: .14em; text-decoration-skip-ink: none; }
+/* The opening screen: a purple cover with the mark and the name, lifted away like a curtain */
+.lp-intro { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; overflow: hidden; pointer-events: none; background: var(--brand); color: #fbf5ee; animation: lp-intro-curtain .85s cubic-bezier(.76, 0, .24, 1) 1.5s both; }
+.lp-intro-lockup { display: flex; flex-direction: column; align-items: center; padding: 24px; text-align: center; }
+.lp-intro-mark { width: clamp(84px, 12vw, 140px); height: auto; margin-bottom: 18px; animation: lp-intro-seal .9s cubic-bezier(.16, 1, .3, 1) both; }
+.lp-intro-mark .a { fill: #fbf5ee; } .lp-intro-mark .b { fill: var(--art-b); }
+.lp-intro-type { display: block; overflow: hidden; }
+.lp-intro-type > span { display: block; animation: lp-intro-rise .8s cubic-bezier(.16, 1, .3, 1) both; }
+.lp-intro-name { font: 600 clamp(72px, 13vw, 168px)/.95 var(--font-display); letter-spacing: -.02em; padding-bottom: .06em; animation-delay: .15s !important; }
+.lp-intro-ar { font: 500 clamp(28px, 4vw, 44px)/1.3 var(--font-display); color: var(--art-b); animation-delay: .3s !important; }
+.lp-intro-caption { margin-top: 10px; font: 600 clamp(11px, 1.2vw, 14px)/1.5 var(--font-sans); letter-spacing: .14em; text-transform: uppercase; opacity: .85; animation-delay: .45s !important; }
+@keyframes lp-intro-seal { from { opacity: 0; transform: scale(.55) rotate(-90deg); } to { opacity: 1; transform: none; } }
+@keyframes lp-intro-rise { from { transform: translateY(115%); } to { transform: none; } }
+@keyframes lp-intro-curtain { 0% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); visibility: visible; } 65% { clip-path: polygon(0 0, 100% 0, 100% 30%, 0 12%); } 100% { clip-path: polygon(0 0, 100% 0, 100% 0, 0 0); visibility: hidden; } }
+.lp-intro-seen .lp-intro { display: none; }
+@media (prefers-reduced-motion: reduce) { .lp-intro { display: none; } }
+
 .lp-mark { padding-inline: .05em; margin-inline: -.05em; border-radius: .12em; white-space: nowrap; background: linear-gradient(transparent 47%, var(--art-b) 47% 75%, transparent 75%) no-repeat 0 0 / 100% 100%; }
 .lp-rot-ctl { display: flex; align-items: center; gap: var(--space-2); margin-block: calc(var(--space-3) * -1); }
 .lp-rot-dots { display: flex; align-items: center; gap: 6px; }

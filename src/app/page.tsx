@@ -1,4 +1,5 @@
 import { Header } from "@/components/Header";
+import { Intro } from "@/components/Intro";
 import { MotionRoot } from "@/components/Motion";
 import { Engine } from "@/components/sections/Engine";
 import { Faq } from "@/components/sections/Faq";
@@ -10,6 +11,7 @@ import { Prices } from "@/components/sections/Prices";
 export default function Home() {
   return (
     <MotionRoot>
+      <Intro />
       <div id="top">
         <Header />
         <main>
