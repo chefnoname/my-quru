@@ -1,5 +1,6 @@
 import { Header } from "@/components/Header";
 import { Intro } from "@/components/Intro";
+import { ToTop } from "@/components/ToTop";
 import { MotionRoot } from "@/components/Motion";
 import { Engine } from "@/components/sections/Engine";
 import { Faq } from "@/components/sections/Faq";
@@ -23,6 +24,7 @@ export default function Home() {
         </main>
         <Footer />
       </div>
+      <ToTop />
     </MotionRoot>
   );
 }
