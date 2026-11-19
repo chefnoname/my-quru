@@ -9,7 +9,7 @@ export function Engine() {
         <div className="lp-band-panel lp-engine-panel">
           <div className="lp-engine-head" data-reveal>
             <p className="lp-kicker">
-              Meet TahaaraEngine<span className="lp-tm">™</span>
+              TAHAARA_ENGINE
             </p>
             <h2 className="lp-h2" id="h-engine">
               Your daily answer, a clearer picture of your cycle, and a teacher by your side.

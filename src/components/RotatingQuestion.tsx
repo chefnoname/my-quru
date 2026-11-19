@@ -7,10 +7,8 @@ import { useMotion, useRoll } from "./Motion";
 /** Each question: the words before the highlight, and the highlighted last words. */
 const QUESTIONS: Array<[string, string]> = [
   ["Can I pray ", "today, sis?"],
-  ["When might my next ", "period arrive?"],
   ["Can I fast ", "tomorrow?"],
   ["Is this hayd or ", "istihada?"],
-  ["Do I need to make ", "anything up?"],
   ["Is it time for ", "ghusl?"],
 ];
 
