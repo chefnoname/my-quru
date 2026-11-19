@@ -7,15 +7,13 @@ import { useMotion, useRoll } from "./Motion";
 /** Each question: the words before the highlight, and the highlighted last words. */
 const QUESTIONS: Array<[string, string]> = [
   ["Can I pray ", "today, sis?"],
-  ["When might my next ", "period arrive?"],
   ["Can I fast ", "tomorrow?"],
   ["Is this hayd or ", "istihada?"],
-  ["Do I need to make ", "anything up?"],
   ["Is it time for ", "ghusl?"],
 ];
 
 /** How long each question stays. The pill under it fills over this time, then the next question rolls in. */
-const QUESTION_MS = 5200;
+const QUESTION_MS = 3900;
 
 /**
  * The hero's headline: the questions a sister asks, one after another. Pausing, or leaving the tab, freezes the

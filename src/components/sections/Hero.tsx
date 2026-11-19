@@ -19,9 +19,9 @@ export function Hero() {
           </p>
           <RotatingQuestion />
           <p className="lp-lead">
-            Meet Quru: a thoughtful companion made for Muslim women. She helps you understand where you stand today with prayer and fasting, explains
-            the reason behind your answer, and gets to know your cycle so you can feel a little more prepared for what&apos;s ahead. And when your
-            situation needs a human touch, you can ask a teacher personally.
+            Meet Quru: a thoughtful companion made <em>for Muslim women</em> She helps you understand where you stand <em>today</em> with prayer and
+            fasting, explains the reason behind your answer, and gets to know your cycle so you can feel a little more prepared for what&apos;s ahead.
+            And when your situation needs a human touch, you can ask a teacher <em>personally</em>.
           </p>
           <div className="lp-cta">
             <a className="qu-btn qu-btn-primary" id="hero-join" href="#join">

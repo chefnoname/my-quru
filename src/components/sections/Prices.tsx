@@ -50,7 +50,7 @@ export function Prices() {
       <div className="lp-wrap">
         <div className="lp-head" data-reveal>
           <h2 className="lp-h2" id="h-options">
-            Simple pricing, with sisters in mind.
+            Simple pricing, with <em className="lp-under">you in mind</em>.
           </h2>
           <p className="lp-lead">
             We want Quru to feel accessible. These are the prices we&apos;re thinking of opening with, but nothing is being charged right now. Have a look and tell us what feels right for you. We&apos;d genuinely love to hear.
@@ -95,7 +95,7 @@ export function Prices() {
         <article className="lp-option lp-option-own" data-reveal>
           <div>
             <h3 className="lp-option-name">Your own price</h3>
-            <p>Have another amount in mind, or feel Quru should be free? Tell us what you&apos;d be comfortable paying, monthly or yearly.</p>
+            <p>Have another price in mind? Tell us.</p>
           </div>
           <div className="lp-own-btns">
             <PickLink pick="custom" className="qu-btn">
