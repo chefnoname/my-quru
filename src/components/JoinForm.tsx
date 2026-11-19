@@ -23,18 +23,18 @@ const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 /** Every question, in order: what the error list calls it, where the error list sends focus, and its check. */
 const FIELDS: Array<{ key: Key; short: string; focus: (v: Values) => string; check: (v: Values) => string }> = [
-  { key: "name", short: "Your name", focus: () => "f-name", check: (v) => (v.name.trim() ? "" : "Enter your name.") },
+  { key: "name", short: "Your name", focus: () => "f-name", check: (v) => (v.name.trim() ? "" : "Please pop your name in.") },
   {
     key: "age",
     short: "Your age",
     focus: () => "f-age",
-    check: (v) => (v.age ? "" : "Choose your age. This list is for sisters aged 18 and over."),
+    check: (v) => (v.age ? "" : "Choose your age, lovely. This list is for sisters aged 18 and over."),
   },
   {
     key: "location",
     short: "Where you live",
     focus: () => "f-location",
-    check: (v) => (v.location.trim() ? "" : "Enter your town or city, and country."),
+    check: (v) => (v.location.trim() ? "" : "Please add your town or city, and country."),
   },
   {
     key: "email",
@@ -42,8 +42,8 @@ const FIELDS: Array<{ key: Key; short: string; focus: (v: Values) => string; che
     focus: () => "f-email",
     check: (v) => {
       const e = v.email.trim();
-      if (!e) return "Enter your email address, so we can tell you when the app is ready.";
-      if (!EMAIL.test(e)) return "Enter a full email address, like name@example.com.";
+      if (!e) return "Add your email so we know where to send your Quru update.";
+      if (!EMAIL.test(e)) return "Please enter a full email address, like name@example.com.";
       return "";
     },
   },
@@ -51,19 +51,19 @@ const FIELDS: Array<{ key: Key; short: string; focus: (v: Values) => string; che
     key: "confused_recent",
     short: "The last three months",
     focus: () => "f-recent-yes",
-    check: (v) => (v.confused_recent ? "" : "Choose an answer, or “I would rather not say”."),
+    check: (v) => (v.confused_recent ? "" : "Choose an answer, or select “I’d rather not say.”"),
   },
   {
     key: "price",
     short: "The price you would pick",
     focus: (v) => (v.price === "custom" ? "f-own-amount" : "f-price-monthly"),
     check: (v) => {
-      if (!v.price) return "Choose the price you would pick, or tell us your own.";
+      if (!v.price) return "Choose the price that feels right, or tell us your own.";
       if (v.price !== "custom") return "";
       const a = v.price_amount.trim().replace(/^£\s*/, "");
-      if (!a) return "Enter the amount you would pay, in pounds.";
-      if (!/^\d{1,4}(\.\d{1,2})?$/.test(a)) return "Enter an amount in pounds, like 4 or 4.50.";
-      if (Number(a) <= 0) return "Enter an amount above £0, or choose “It should be free”.";
+      if (!a) return "Enter the amount in pounds, like 4 or 4.50.";
+      if (!/^\d{1,4}(\.\d{1,2})?$/.test(a)) return "Enter the amount in pounds, like 4 or 4.50.";
+      if (Number(a) <= 0) return "Please enter an amount above £0, or choose “I think it should be free.”";
       return "";
     },
   },
@@ -71,7 +71,7 @@ const FIELDS: Array<{ key: Key; short: string; focus: (v: Values) => string; che
     key: "consent",
     short: "Your agreement",
     focus: () => "f-consent",
-    check: (v) => (v.consent ? "" : "Tick the box, so we may keep your answers and write to you."),
+    check: (v) => (v.consent ? "" : "Please tick the box so we can keep your answers and contact you."),
   },
 ];
 const fieldFor = (key: Key) => FIELDS.find((f) => f.key === key)!;
@@ -89,10 +89,10 @@ const EMPTY: Values = {
 };
 
 const PRICES: Array<{ value: PriceChoice; title: string; note?: string }> = [
-  { value: "monthly", title: "£3 a month", note: "Month by month." },
-  { value: "yearly", title: "£25 a year", note: "One payment a year." },
-  { value: "founding", title: "£75 once, as a founding sister", note: "One payment, with nothing to renew." },
-  { value: "custom", title: "My own price", note: "Tell us what you would pay, a month or a year." },
+  { value: "monthly", title: "£3 a month", note: "Pay monthly" },
+  { value: "yearly", title: "£25 a year", note: "One yearly payment" },
+  { value: "founding", title: "£75 once", note: "Founding sister price, with nothing to renew" },
+  { value: "custom", title: "My own price", note: "Tell us an amount and whether it’s per month or per year" },
   { value: "free", title: "It should be free" },
 ];
 
@@ -207,16 +207,16 @@ export function JoinForm() {
           <div className="qu-notice">
             <Info />
             <p>
-              <strong>Design preview.</strong> Nothing was sent or saved. This is what a sister sees after she signs up.
+              <strong>This is a design preview only.</strong> No form was submitted, and no details were saved.
             </p>
           </div>
         )}
         <span className="qu-status qu-status-confirmed" style={{ justifySelf: "start" }}>
-          On the list
+          You&apos;re on the list!
         </span>
         <h3>{done.firstName ? `You're on the list, ${done.firstName}.` : "You're on the list."}</h3>
-        <p>We will write to {done.email} when the app is ready. There is nothing to pay and nothing else to do.</p>
-        {CONTACT_EMAIL && <p className="lp-fine">Questions? Write to {CONTACT_EMAIL}.</p>}
+        <p>Thank you for being here, sis. We&apos;ll email you at {done.email} as soon as Quru is ready. There&apos;s nothing else you need to do for now. We&apos;ll keep you posted!</p>
+        {CONTACT_EMAIL && <p className="lp-fine">Have a question in the meantime? You can reach us at {CONTACT_EMAIL}.</p>}
       </div>
     );
   }
@@ -229,7 +229,7 @@ export function JoinForm() {
           <CircleAlert />
           <div>
             <p>
-              <strong>{problems.length === 1 ? "Check 1 answer before you send" : `Check ${problems.length} answers before you send`}</strong>
+              <strong>{problems.length === 1 ? "Just one little thing to check before you send" : `${problems.length} things to check before you send`}</strong>
             </p>
             <ul>
               {problems.map((p) => {
@@ -291,10 +291,10 @@ export function JoinForm() {
               }}
             >
               <option value="">Choose</option>
-              <option value="18-24">18 to 24</option>
-              <option value="25-34">25 to 34</option>
-              <option value="35-44">35 to 44</option>
-              <option value="45-54">45 to 54</option>
+              <option value="18-24">18–24</option>
+              <option value="25-34">25–34</option>
+              <option value="35-44">35–44</option>
+              <option value="45-54">45–54</option>
               <option value="55+">55 or over</option>
             </select>
           </span>
@@ -326,7 +326,7 @@ export function JoinForm() {
           Email address
         </label>
         <p className="qu-help" id="f-email-help">
-          We use it to tell you when the app is ready. No newsletters.
+          We&apos;ll use this to let you know when Quru is ready. No newsletters, promise.
         </p>
         <ErrorText id="f-email-error" message={errors.email} />
         <input
@@ -345,7 +345,7 @@ export function JoinForm() {
       </div>
 
       <Choices
-        legend="In the last three months, was there a moment when you didn't know whether you should be praying?"
+        legend="In the last three months, was there a time when you weren't sure whether you should be praying?"
         help="For example, you weren't sure whether your bleeding was hayd or istihada."
         errorId="g-recent-error"
         error={errors.confused_recent}
@@ -354,7 +354,7 @@ export function JoinForm() {
           {[
             ["yes", "Yes"],
             ["no", "No"],
-            ["prefer_not", "I would rather not say"],
+            ["prefer_not", "I’d rather not say"],
           ].map(([value, title]) => (
             <label className="qu-choice" key={value}>
               <input type="radio" id={`f-recent-${value.replace("_", "-")}`} name="confused_recent" value={value} required {...choose("confused_recent", value)} />
@@ -364,7 +364,7 @@ export function JoinForm() {
         </div>
       </Choices>
 
-      <Choices legend="Which price sounds most attractive to you?" help="What would you pick? We are not taking payment." errorId="g-price-error" error={errors.price}>
+      <Choices legend="Which option feels best to you?" help="We’re not taking payment." errorId="g-price-error" error={errors.price}>
         {PRICES.map((p) => (
           <PriceOption key={p.value} {...p} control={choose("price", p.value)}>
             {p.value === "custom" && values.price === "custom" && (
@@ -434,10 +434,8 @@ export function JoinForm() {
             }}
           />
           <span>
-            <span className="qu-choice-title">I agree to Quru keeping my answers to contact me about the app.</span>
-            <span className="qu-choice-note">
-              We use them to write to you when the app is ready, and to understand who needs it. You can ask us to delete them at any time.
-            </span>
+            <span className="qu-choice-title">I agree to Quru keeping my answers so the team can contact me about the app and understand who needs it.</span>
+            <span className="qu-choice-note">I can ask for my details to be deleted at any time.</span>
           </span>
         </label>
       </div>
@@ -450,14 +448,14 @@ export function JoinForm() {
           <div className="qu-notice qu-notice-danger" role="alert">
             <CircleAlert />
             <p>
-              <strong>We could not send your form.</strong> Check your connection and send it again. Your answers are still here.
+              <strong>Oh no, your form didn&apos;t go through.</strong> Check your connection and try sending it again. Don&apos;t worry, your answers are still here.
             </p>
           </div>
         )}
         <button className="qu-btn qu-btn-primary qu-btn-block" type="submit" disabled={sending}>
-          {sending ? "Sending your form" : "Tell me when Quru opens"}
+          {sending ? "Sending your form…" : "Let me know when Quru opens"}
         </button>
-        <p className="lp-fine">No payment is taken.</p>
+        <p className="lp-fine">No payment will be taken. You&apos;re just joining the list.</p>
       </div>
     </form>
   );

@@ -2,10 +2,10 @@ import { Lock } from "lucide-react";
 import { JoinForm } from "../JoinForm";
 
 const PRIVATE = [
-  "Your log stays on your phone.",
-  "Reminders never say “period” on your lock screen.",
-  "Your question goes to your teacher and nobody else, and the chat is anonymous.",
-  "What you tell us here is seen only by the Quru team. It is never sold, and we delete it when you ask.",
+  "Your cycle log stays on your phone.",
+  "Your reminders won’t display the word “period” on your lock screen.",
+  "Your question is shared only with your teacher, and your chat is anonymous.",
+  "The details you share on this sign-up form are seen only by the Quru team. We never sell them, and we’ll delete them if you ask.",
 ];
 
 export function Join() {
@@ -14,14 +14,14 @@ export function Join() {
       <div className="lp-wrap lp-join-grid">
         <div className="lp-join-copy" data-reveal>
           <h2 className="lp-h2" id="h-join">
-            Pray with certainty
+            A little more peace of mind. A little more certainty.
           </h2>
           <p className="lp-lead">
-            Fill in the short form and we&apos;ll write to you the day Quru opens. Your answers tell us what to build first. We take no payment.
+            Add your details to the list and we&apos;ll send you a message the day Quru opens. Your answers will also help us understand what sisters need most, so we can build with you in mind. And don&apos;t worry, there&apos;s nothing to pay.
           </p>
           <div>
             <h3 className="lp-h3" style={{ marginBottom: "var(--space-3)" }}>
-              Private, the way this should be
+              Your privacy matters. Always.
             </h3>
             <ul className="lp-private-list lp-join-private">
               {PRIVATE.map((line) => (

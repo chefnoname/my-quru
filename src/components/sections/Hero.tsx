@@ -19,18 +19,19 @@ export function Hero() {
           </p>
           <RotatingQuestion />
           <p className="lp-lead">
-            Quru is an app for Muslim sisters. It tells you where you stand today, and why, and it learns your cycle so you know when the next one is
-            coming. When your situation is one the app can&apos;t settle, a teacher answers you personally.
+            Meet Quru: a thoughtful companion made for Muslim women. She helps you understand where you stand today with prayer and fasting, explains
+            the reason behind your answer, and gets to know your cycle so you can feel a little more prepared for what&apos;s ahead. And when your
+            situation needs a human touch, you can ask a teacher personally.
           </p>
           <div className="lp-cta">
             <a className="qu-btn qu-btn-primary" id="hero-join" href="#join">
-              Tell me when Quru opens
+              Keep me in the loop
             </a>
             <a className="qu-btn qu-btn-text" href="#engine">
-              See what it will do
+              See how Quru helps
             </a>
           </div>
-          <p className="lp-fine">No payment. We only want to know who needs this. For sisters aged 18 and over.</p>
+          <p className="lp-fine">Joining the list is completely free. We&apos;d just love to know who&apos;s waiting for Quru. For sisters aged 18 and over.</p>
         </div>
         <AnswerCard />
       </div>

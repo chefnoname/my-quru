@@ -6,12 +6,12 @@ import { useMotion, useRoll } from "./Motion";
 
 /** Each question: the words before the highlight, and the highlighted last words. */
 const QUESTIONS: Array<[string, string]> = [
-  ["Do I pray ", "today?"],
-  ["When's my next ", "period?"],
+  ["Can I pray ", "today, sis?"],
+  ["When might my next ", "period arrive?"],
   ["Can I fast ", "tomorrow?"],
-  ["Is it hayd or ", "istihada?"],
-  ["What do I ", "make up?"],
-  ["When do I take ", "ghusl?"],
+  ["Is this hayd or ", "istihada?"],
+  ["Do I need to make ", "anything up?"],
+  ["Is it time for ", "ghusl?"],
 ];
 
 /** How long each question stays. The pill under it fills over this time, then the next question rolls in. */
@@ -48,7 +48,7 @@ export function RotatingQuestion() {
             </i>
           ))}
         </span>
-        <button type="button" className="lp-pause" aria-label={paused ? "Play the animations" : "Pause the animations"} onClick={togglePaused}>
+        <button type="button" className="lp-pause" aria-label={paused ? "Play the animations." : "Pause the animations."} onClick={togglePaused}>
           <span className="lp-ico-pause">
             <Pause />
           </span>

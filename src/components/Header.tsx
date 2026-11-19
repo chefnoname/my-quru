@@ -39,7 +39,7 @@ export function Header() {
         <div className="lp-wrap lp-top-in">
           <Wordmark />
           <a className={cx("qu-btn", heroButtonGone && "qu-btn-primary")} href="#join">
-            Join the list
+            Join our sisterhood
           </a>
         </div>
       </header>
@@ -94,7 +94,7 @@ function Wordmark() {
   };
 
   return (
-    <a className="lp-logo" href="#top" aria-label="Quru, back to the top" onPointerEnter={enter} onPointerLeave={leave} onFocus={focus} onBlur={leave}>
+    <a className="lp-logo" href="#top" aria-label="Quru, back to the top of the page." onPointerEnter={enter} onPointerLeave={leave} onFocus={focus} onBlur={leave}>
       <LogoMark />
       <span className="lp-logo-roll" aria-hidden="true">
         <span className={cx("lp-logo-ar", roll.classFor("ar"))} lang="ar" dir="rtl">
