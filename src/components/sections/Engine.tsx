@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Term } from "../Term";
 import appScreens from "../../../public/app-screens.webp";
 
 /** What TahaaraEngine does today, how Quru learns a cycle, and early designs of the app. */
@@ -8,9 +9,6 @@ export function Engine() {
       <div className="lp-wrap">
         <div className="lp-band-panel lp-engine-panel">
           <div className="lp-engine-head" data-reveal>
-            <p className="lp-kicker">
-              TAHAARA_ENGINE
-            </p>
             <h2 className="lp-h2" id="h-engine">
               Your daily answer, a clearer picture of your cycle, and a teacher by your side.
             </h2>
@@ -25,10 +23,13 @@ export function Engine() {
                 </p>
               </li>
               <li>
-                <h3>A gentle heads-up before your next period</h3>
+                <h3>
+                  TahaaraEngine<span className="lp-tm">™</span>, right by your side
+                </h3>
                 <p>
-                  Already have your past cycle dates? Bring them along, whether you remember them or have them saved in another app. Quru gets to know
-                  your rhythm and can give you a heads-up a few days before your next period, with simple ways to prepare your body and heart.
+                  <Term /> takes your answers and turns them into clear guidance, made just for you. Gentle notifications and widgets keep it close:
+                  see today&apos;s prayers on your lock screen, get a soft heads-up before your next period, and find worship you can still enjoy on the
+                  days you rest from salah. Less guessing, more peace of mind.
                 </p>
               </li>
             </ul>
