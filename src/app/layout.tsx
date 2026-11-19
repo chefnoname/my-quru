@@ -19,9 +19,9 @@ const markazi = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Quru | Know if you can pray today",
+  title: "Quru | A little more certainty for your salah",
   description:
-    "Quru tells Muslim women where they stand for prayer and fasting, learns their cycle to remind them when the next one is due, and a teacher answers the rest.",
+    "A thoughtful little companion for Muslim women navigating their cycles. Know where you stand with prayer and fasting, keep track of your cycle, and reach a trusted teacher when you need a little more guidance.",
   // Kept out of search results until the form really sends.
   robots: LIVE ? undefined : { index: false, follow: false },
 };

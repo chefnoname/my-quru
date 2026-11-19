@@ -120,10 +120,10 @@ export function AnswerCard() {
           }}
         >
           <p className="lp-answer-kicker">
-            <span>Example answer</span>
+            <span>A little example</span>
             <span>November</span>
           </p>
-          <div className="qu-cal" role="img" aria-label="A calendar for November. The 3rd to the 9th are crossed, to show seven days of bleeding. Today is the 10th.">
+          <div className="qu-cal" role="img" aria-label="A calendar for November. The 3rd to the 9th are crossed out to show seven days of bleeding. Today is the 10th.">
             <div className="qu-cal-week">
               {["M", "T", "W", "T", "F", "S", "S"].map((d, i) => (
                 <span key={i}>{d}</span>
@@ -139,13 +139,13 @@ export function AnswerCard() {
               </span>
             </p>
           </div>
-          <p className="lp-answer-title">You&apos;re clear to pray today, sis!</p>
-          <p className="lp-answer-text">You have had seven days of hayd and the signs of purity have appeared, so take your ghusl and pray.</p>
+          <p className="lp-answer-title">You&apos;re clear to pray today, sis.</p>
+          <p className="lp-answer-text">You&apos;ve had seven days of hayd, and the signs of purity have appeared. It&apos;s time to make ghusl and return to salah.</p>
           <div className="lp-answer-foot">
-            <span className="qu-status qu-status-confirmed">Confirmed</span>
+            <span className="qu-status qu-status-confirmed">Answer checked</span>
           </div>
         </div>
-        <figcaption className="lp-fine lp-answer-note">An illustration of the app. Your answer follows your own dates.</figcaption>
+        <figcaption className="lp-fine lp-answer-note">Just an example of how Quru may look. Your own answer will be based on the dates and details you share.</figcaption>
       </figure>
     </div>
   );

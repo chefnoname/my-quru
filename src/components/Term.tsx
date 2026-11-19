@@ -113,8 +113,8 @@ export function Term() {
             onPointerEnter={() => window.clearTimeout(wait.current)}
             onPointerLeave={(e) => mouse(e) && by === "hover" && hideSoon()}
           >
-            <b>TahaaraEngine™</b> is a set of personalised questions. You answer them and describe your symptoms, and that helps determine what kind of
-            bleeding you have.
+            <b>TahaaraEngine™</b> is a series of personalised questions about your bleeding and symptoms. Your answers help Quru work out what kind of
+            bleeding you may be experiencing.
           </div>,
           document.body,
         )}

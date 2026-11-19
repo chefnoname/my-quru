@@ -10,10 +10,10 @@ export function Footer() {
           <span lang="ar" dir="rtl">
             قروء
           </span>
-          ) is the Quran&apos;s word for a woman&apos;s cycles, in Al-Baqarah 2:228.
+          ) is the Quran&apos;s word for a woman&apos;s cycles, mentioned in Al-Baqarah 2:228.
         </p>
         <div className="lp-foot-legal">
-          <p className="lp-fine">© 2026 Quru. Made in London.</p>
+          <p className="lp-fine">© 2026 Quru. Made with care in London.</p>
           <p className="lp-fine">KOBCIN LTD · No. 17500293 · Registered in England &amp; Wales · 195 Wood Street, London, United Kingdom, E17 3NU</p>
         </div>
       </div>
