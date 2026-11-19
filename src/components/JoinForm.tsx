@@ -60,10 +60,10 @@ const FIELDS: Array<{ key: Key; short: string; focus: (v: Values) => string; che
     check: (v) => {
       if (!v.price) return "Choose the price that feels right, or tell us your own.";
       if (v.price !== "custom") return "";
-      const a = v.price_amount.trim().replace(/^£\s*/, "");
-      if (!a) return "Enter the amount in pounds, like 4 or 4.50.";
-      if (!/^\d{1,4}(\.\d{1,2})?$/.test(a)) return "Enter the amount in pounds, like 4 or 4.50.";
-      if (Number(a) <= 0) return "Please enter an amount above £0, or choose “I think it should be free.”";
+      const a = v.price_amount.trim().replace(/^(CA)?\$\s*/i, "");
+      if (!a) return "Enter the amount in Canadian dollars, like 4 or 4.50.";
+      if (!/^\d{1,4}(\.\d{1,2})?$/.test(a)) return "Enter the amount in Canadian dollars, like 4 or 4.50.";
+      if (Number(a) <= 0) return "Please enter an amount above $0, or choose “I think it should be free.”";
       return "";
     },
   },
@@ -89,9 +89,9 @@ const EMPTY: Values = {
 };
 
 const PRICES: Array<{ value: PriceChoice; title: string; note?: string }> = [
-  { value: "monthly", title: "£3 a month", note: "Pay monthly" },
-  { value: "yearly", title: "£25 a year", note: "One yearly payment" },
-  { value: "founding", title: "£75 once", note: "Founding sister price, with nothing to renew" },
+  { value: "monthly", title: "$3 CAD a month", note: "Pay monthly" },
+  { value: "yearly", title: "$25 CAD a year", note: "One yearly payment" },
+  { value: "founding", title: "$75 CAD once", note: "Founding sister price, with nothing to renew" },
   { value: "custom", title: "My own price", note: "Tell us an amount and whether it’s per month or per year" },
   { value: "free", title: "It should be free" },
 ];
@@ -371,10 +371,10 @@ export function JoinForm() {
               <div className="lp-own" id="own-price">
                 <div className="qu-field">
                   <label className="qu-label" htmlFor="f-own-amount">
-                    Amount
+                    Amount (CAD)
                   </label>
                   <span className="lp-own-amount">
-                    <span aria-hidden="true">£</span>
+                    <span aria-hidden="true">$</span>
                     <input
                       className="qu-input"
                       id="f-own-amount"
