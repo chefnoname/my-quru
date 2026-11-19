@@ -178,6 +178,23 @@ form[id] { scroll-margin-top: var(--space-6); }
 .lp-top .lp-logo { gap: calc(10px - 3px * var(--fold)); font-size: calc(38px - 4px * var(--nav-morph) - 8px * var(--fold)); }
 .lp-top .lp-logo svg { --s: calc(36px - 3px * var(--nav-morph) - 7px * var(--fold)); width: var(--s); height: var(--s); }
 
+/* Back to the top: a round button in the bottom right corner, shown once she has scrolled past the first screen */
+.lp-totop {
+  position: fixed; z-index: 25; right: max(16px, env(safe-area-inset-right, 0px)); bottom: max(16px, env(safe-area-inset-bottom, 0px));
+  display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%;
+  background: var(--brand); color: var(--on-brand); box-shadow: var(--shadow-lg); text-decoration: none;
+  opacity: 0; visibility: hidden; translate: 0 12px;
+}
+.lp-totop.is-shown { opacity: 1; visibility: visible; translate: 0 0; }
+.lp-totop:hover { background: var(--brand-hover); color: var(--on-brand); }
+.lp-totop:focus-visible { outline: 3px solid var(--brand); outline-offset: 3px; }
+@media (prefers-reduced-motion: no-preference) {
+  .lp-totop { transition: opacity .25s ease, visibility .25s, translate .3s var(--ease-out), background-color .15s ease, scale .15s ease; }
+  .lp-totop:hover { scale: 1.06; }
+  .lp-totop:active { scale: .96; }
+}
+@media print { .lp-totop { display: none; } }
+
 /* Hero */
 .lp-hero { overflow: clip; }
 .lp-hero-grid { display: grid; gap: var(--space-8); align-items: center; padding-block: clamp(20px, 4vw, 56px) clamp(48px, 7vw, 96px); }
