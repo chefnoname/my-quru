@@ -38,6 +38,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <head>
         {/* Holds the example answer's animation until the card is on screen (see AnswerCard). Runs before the first paint. */}
         <script dangerouslySetInnerHTML={{ __html: 'document.documentElement.classList.add("lp-wait")' }} />
+        {/* The opening screen shows once per visit: later loads in the same tab session skip it. Runs before the first paint. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              'try{var s=sessionStorage;if(s.getItem("quru-intro-seen"))document.documentElement.classList.add("lp-intro-seen");else s.setItem("quru-intro-seen","1")}catch(e){}',
+          }}
+        />
       </head>
       <body>{children}</body>
       {/* Microsoft Clarity: heatmaps and session replays, only when NEXT_PUBLIC_CLARITY_ID is set. Loads after the page is interactive. */}
