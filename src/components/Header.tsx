@@ -10,19 +10,16 @@ const MORPH_FROM = 24;
 const MORPH_OVER = 220;
 /** How much scrolling (either way) it takes before the wordmark swaps language. */
 const SWAP_EVERY = 1100;
-/** Past this point of the shrink, the header's button is gone, so it can't be tabbed to. */
-const BUTTON_GONE_AT = 0.6;
 
 /**
  * The header stays in reach. It is see-through at the very top; as she scrolls it shrinks into a small floating
- * pill (--nav-morph runs from 0 to 1) holding only the wordmark: the button folds away and the wordmark gets smaller.
- * At the top, the button fills in once the hero's button has scrolled away, and steps aside while the form is on screen.
+ * pill (--nav-morph runs from 0 to 1). Its button fills in once the hero's button has scrolled away. While the form
+ * itself is on screen the button folds away and the pill closes in around a smaller wordmark.
  */
 export function Header() {
   const [atTop, setAtTop] = useState(true);
   const [heroButtonGone, setHeroButtonGone] = useState(false);
   const [atJoin, setAtJoin] = useState(false);
-  const [pill, setPill] = useState(false);
 
   useEffect(() => {
     if (!("IntersectionObserver" in window)) return;
@@ -49,7 +46,6 @@ export function Header() {
       frame = 0;
       const morph = Math.min(1, Math.max(0, (window.scrollY - MORPH_FROM) / MORPH_OVER));
       header.current?.style.setProperty("--nav-morph", morph.toFixed(3));
-      setPill(morph >= BUTTON_GONE_AT);
     };
     const onScroll = () => {
       if (!frame) frame = window.requestAnimationFrame(update);
@@ -68,10 +64,10 @@ export function Header() {
     <>
       <div className="lp-top-mark" id="top-mark" aria-hidden="true" />
       <div className="lp-top-space" aria-hidden="true" />
-      <header className={cx("lp-top", atTop && "is-top", atJoin && "at-join", pill && "is-pill")} id="site-top" ref={header}>
+      <header className={cx("lp-top", atTop && "is-top", atJoin && "at-join")} id="site-top" ref={header}>
         <div className="lp-wrap lp-top-in">
           <Wordmark />
-          <a className={cx("qu-btn", heroButtonGone && "qu-btn-primary")} href="#join" tabIndex={pill ? -1 : undefined} aria-hidden={pill || undefined}>
+          <a className={cx("qu-btn", heroButtonGone && "qu-btn-primary")} href="#join" tabIndex={atJoin ? -1 : undefined} aria-hidden={atJoin || undefined}>
             Join our sisterhood
           </a>
         </div>

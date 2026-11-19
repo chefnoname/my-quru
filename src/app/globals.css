@@ -143,13 +143,14 @@ form[id] { scroll-margin-top: var(--space-6); }
 /* Header: the wordmark shows in Arabic first, then rolls into English */
 .lp-top-mark { height: 1px; margin-bottom: -1px; }
 /* The header is fixed, so a spacer holds its place. As she scrolls, --nav-morph (0 to 1, set by Header) narrows it
-   into a small floating pill: lower, rounder, shorter, with a soft shadow. The button folds away (--fold runs 0 to 1
-   over the first 60% of the shrink) and the wordmark gets smaller, so the pill holds only the wordmark. */
+   into a floating pill: lower, rounder, shorter, with a soft shadow. While the form is on screen (.at-join) --fold
+   eases from 0 to 1: the button folds away and the pill closes in around a smaller wordmark. */
+@property --fold { syntax: "<number>"; inherits: true; initial-value: 0; }
 .lp-top-space { height: 72px; }
 .lp-top {
-  --nav-morph: 0; --nav-pill: 114px; --fold: min(1, calc(var(--nav-morph) / .6));
+  --nav-morph: 0; --fold: 0; --nav-pill: calc(400px * (1 - var(--fold)) + 114px * var(--fold));
   position: fixed; top: calc(14px * var(--nav-morph)); left: 50%; translate: -50% 0; z-index: 30;
-  width: calc(100% * (1 - var(--nav-morph)) + var(--nav-pill) * var(--nav-morph));
+  width: calc(100% * (1 - var(--nav-morph)) + min(var(--nav-pill), calc(100vw - 24px)) * var(--nav-morph));
   border-radius: calc(40px * var(--nav-morph));
   background: var(--surface); background: color-mix(in srgb, var(--raised, #fffcf8) 92%, transparent);
   -webkit-backdrop-filter: blur(14px) saturate(1.3); backdrop-filter: blur(14px) saturate(1.3);
@@ -157,9 +158,10 @@ form[id] { scroll-margin-top: var(--space-6); }
   will-change: width, top, border-radius;
 }
 .lp-top.is-top { background: transparent; -webkit-backdrop-filter: none; backdrop-filter: none; box-shadow: none; }
-.lp-top-in { display: flex; align-items: center; justify-content: space-between; gap: calc(var(--space-4) * (1 - var(--fold))); height: calc(72px - 16px * var(--nav-morph)); }
-.lp-top .lp-wrap { padding-left: calc(max(var(--gutter), env(safe-area-inset-left, 0px)) * (1 - var(--nav-morph)) + 14px * var(--nav-morph)); padding-right: calc(max(var(--gutter), env(safe-area-inset-right, 0px)) * (1 - var(--nav-morph)) + 14px * var(--nav-morph)); }
-.lp-top.at-join .qu-btn, .lp-top.is-pill .qu-btn { opacity: 0; visibility: hidden; }
+.lp-top-in { display: flex; align-items: center; justify-content: space-between; gap: calc(var(--space-4) * (1 - var(--fold))); height: calc(72px - 10px * var(--nav-morph) - 6px * var(--fold)); }
+.lp-top .lp-wrap { padding-left: calc(max(var(--gutter), env(safe-area-inset-left, 0px)) * (1 - var(--nav-morph)) + 14px * var(--nav-morph)); padding-right: calc(max(var(--gutter), env(safe-area-inset-right, 0px)) * (1 - var(--nav-morph)) + (9px + 5px * var(--fold)) * var(--nav-morph)); }
+.lp-top.at-join { --fold: 1; }
+.lp-top.at-join .qu-btn { visibility: hidden; }
 @media print { .lp-top { position: static; translate: none; width: auto; } .lp-top-space, .lp-intro { display: none; } }
 .lp-logo { display: inline-flex; align-items: center; gap: 10px; min-height: 48px; color: var(--ink); text-decoration: none; font: 600 38px/1 var(--font-display); }
 .lp-logo:hover { color: var(--ink); }
@@ -173,8 +175,8 @@ form[id] { scroll-margin-top: var(--space-6); }
   min-height: 44px; padding-inline: calc(20px * (1 - var(--fold))); white-space: nowrap; overflow: hidden;
   max-width: calc(280px * (1 - var(--fold))); border-width: calc(1.5px * (1 - var(--fold))); opacity: calc(1 - var(--fold));
 }
-.lp-top .lp-logo { gap: calc(10px - 3px * var(--nav-morph)); font-size: calc(38px - 12px * var(--nav-morph)); }
-.lp-top .lp-logo svg { width: calc(36px - 10px * var(--nav-morph)); height: calc(36px - 10px * var(--nav-morph)); }
+.lp-top .lp-logo { gap: calc(10px - 3px * var(--fold)); font-size: calc(38px - 4px * var(--nav-morph) - 8px * var(--fold)); }
+.lp-top .lp-logo svg { --s: calc(36px - 3px * var(--nav-morph) - 7px * var(--fold)); width: var(--s); height: var(--s); }
 
 /* Hero */
 .lp-hero { overflow: clip; }
@@ -381,8 +383,8 @@ form[id] { scroll-margin-top: var(--space-6); }
   .lp-answer.is-emptying .qu-cal-day svg { animation: lp-fade .16s ease both; }
   .lp-answer.is-emptying .qu-cal-day path { animation: none; }
 
-  .lp-top { transition: background-color .25s ease, box-shadow .25s ease; }
-  .lp-top .qu-btn { transition: background-color .2s ease, border-color .2s ease, color .2s ease, translate .2s var(--ease-out), scale .15s ease, box-shadow .2s ease, opacity .2s ease, visibility .2s; }
+  .lp-top { transition: background-color .25s ease, box-shadow .25s ease, --fold .55s var(--ease-out); }
+  .lp-top .qu-btn { transition: background-color .2s ease, border-color .2s ease, color .2s ease, translate .2s var(--ease-out), scale .15s ease, box-shadow .2s ease, visibility .55s; }
   .lp-tip { translate: 0 5px; transition: opacity .16s ease, translate .22s var(--ease-out); }
   .lp-tip[data-below] { translate: 0 -5px; }
   .lp-tip.is-on { translate: 0 0; }
