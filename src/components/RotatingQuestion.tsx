@@ -13,7 +13,7 @@ const QUESTIONS: Array<[string, string]> = [
 ];
 
 /** How long each question stays. The pill under it fills over this time, then the next question rolls in. */
-const QUESTION_MS = 3900;
+const QUESTION_MS = 4095;
 
 /**
  * The hero's headline: the questions a sister asks, one after another. Pausing, or leaving the tab, freezes the

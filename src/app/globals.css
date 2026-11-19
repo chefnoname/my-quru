@@ -143,10 +143,11 @@ form[id] { scroll-margin-top: var(--space-6); }
 /* Header: the wordmark shows in Arabic first, then rolls into English */
 .lp-top-mark { height: 1px; margin-bottom: -1px; }
 /* The header is fixed, so a spacer holds its place. As she scrolls, --nav-morph (0 to 1, set by Header) narrows it
-   into a floating pill: lower, rounder, a little shorter, with a soft shadow. */
+   into a small floating pill: lower, rounder, shorter, with a soft shadow. The button folds away (--fold runs 0 to 1
+   over the first 60% of the shrink) and the wordmark gets smaller, so the pill holds only the wordmark. */
 .lp-top-space { height: 72px; }
 .lp-top {
-  --nav-morph: 0; --nav-pill: min(400px, calc(100vw - 24px));
+  --nav-morph: 0; --nav-pill: 114px; --fold: min(1, calc(var(--nav-morph) / .6));
   position: fixed; top: calc(14px * var(--nav-morph)); left: 50%; translate: -50% 0; z-index: 30;
   width: calc(100% * (1 - var(--nav-morph)) + var(--nav-pill) * var(--nav-morph));
   border-radius: calc(40px * var(--nav-morph));
@@ -156,9 +157,9 @@ form[id] { scroll-margin-top: var(--space-6); }
   will-change: width, top, border-radius;
 }
 .lp-top.is-top { background: transparent; -webkit-backdrop-filter: none; backdrop-filter: none; box-shadow: none; }
-.lp-top-in { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); height: calc(72px - 10px * var(--nav-morph)); }
-.lp-top .lp-wrap { padding-left: calc(max(var(--gutter), env(safe-area-inset-left, 0px)) * (1 - var(--nav-morph)) + 14px * var(--nav-morph)); padding-right: calc(max(var(--gutter), env(safe-area-inset-right, 0px)) * (1 - var(--nav-morph)) + 9px * var(--nav-morph)); }
-.lp-top.at-join .qu-btn { opacity: 0; visibility: hidden; }
+.lp-top-in { display: flex; align-items: center; justify-content: space-between; gap: calc(var(--space-4) * (1 - var(--fold))); height: calc(72px - 16px * var(--nav-morph)); }
+.lp-top .lp-wrap { padding-left: calc(max(var(--gutter), env(safe-area-inset-left, 0px)) * (1 - var(--nav-morph)) + 14px * var(--nav-morph)); padding-right: calc(max(var(--gutter), env(safe-area-inset-right, 0px)) * (1 - var(--nav-morph)) + 14px * var(--nav-morph)); }
+.lp-top.at-join .qu-btn, .lp-top.is-pill .qu-btn { opacity: 0; visibility: hidden; }
 @media print { .lp-top { position: static; translate: none; width: auto; } .lp-top-space, .lp-intro { display: none; } }
 .lp-logo { display: inline-flex; align-items: center; gap: 10px; min-height: 48px; color: var(--ink); text-decoration: none; font: 600 38px/1 var(--font-display); }
 .lp-logo:hover { color: var(--ink); }
@@ -168,7 +169,12 @@ form[id] { scroll-margin-top: var(--space-6); }
 .lp-logo-ar { opacity: 0; }
 @media (hover: hover) { :root:not(.lp-motion) .lp-logo:hover .lp-logo-ar { opacity: 1; } :root:not(.lp-motion) .lp-logo:hover .lp-logo-en { opacity: 0; } }
 .lp-logo .a, .lp-foot .a { fill: var(--logo-a); } .lp-logo .b, .lp-foot .b { fill: var(--logo-b); }
-.lp-top .qu-btn { min-height: 44px; padding-inline: 20px; }
+.lp-top .qu-btn {
+  min-height: 44px; padding-inline: calc(20px * (1 - var(--fold))); white-space: nowrap; overflow: hidden;
+  max-width: calc(280px * (1 - var(--fold))); border-width: calc(1.5px * (1 - var(--fold))); opacity: calc(1 - var(--fold));
+}
+.lp-top .lp-logo { gap: calc(10px - 3px * var(--nav-morph)); font-size: calc(38px - 12px * var(--nav-morph)); }
+.lp-top .lp-logo svg { width: calc(36px - 10px * var(--nav-morph)); height: calc(36px - 10px * var(--nav-morph)); }
 
 /* Hero */
 .lp-hero { overflow: clip; }
@@ -352,7 +358,7 @@ form[id] { scroll-margin-top: var(--space-6); }
   .lp-motion .lp-rot-item.is-on .lp-mark { animation: lp-sweep .85s .8s cubic-bezier(.3, .7, .2, 1) both; }
   /* The active dot is a pill with a soft track that fills with rose over the question's time */
   .lp-motion .lp-rot-dots i.is-on { width: 40px; background: var(--art-a); }
-  .lp-motion .lp-rot-dots i.is-on b { visibility: visible; animation: lp-fill calc(var(--q, 3900ms) - 300ms) linear .3s both; }
+  .lp-motion .lp-rot-dots i.is-on b { visibility: visible; animation: lp-fill calc(var(--q, 4095ms) - 300ms) linear .3s both; }
   .is-paused .lp-rot-dots i.is-on b, .is-held .lp-rot-dots i.is-on b { animation-play-state: paused; }
 
   /* The example answer: the card arrives, a cross is drawn on each day of bleeding in turn, today lights up, the two circles
