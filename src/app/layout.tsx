@@ -18,10 +18,17 @@ const markazi = localFont({
   display: "swap",
 });
 
+const TITLE = "Quru | A little more certainty for your salah";
+const DESCRIPTION =
+  "A thoughtful little companion for Muslim women navigating their cycles. Know where you stand with prayer and fasting, keep track of your cycle, and reach a trusted teacher when you need a little more guidance.";
+
+/* The link preview picture is opengraph-image.png (and twitter-image.png) in this folder: the hadith card. */
 export const metadata: Metadata = {
-  title: "Quru | A little more certainty for your salah",
-  description:
-    "A thoughtful little companion for Muslim women navigating their cycles. Know where you stand with prayer and fasting, keep track of your cycle, and reach a trusted teacher when you need a little more guidance.",
+  metadataBase: new URL("https://my-quru.vercel.app"),
+  title: TITLE,
+  description: DESCRIPTION,
+  openGraph: { title: TITLE, description: DESCRIPTION, url: "/", siteName: "Quru", type: "website", locale: "en_GB" },
+  twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
   // Kept out of search results until the form really sends.
   robots: LIVE ? undefined : { index: false, follow: false },
 };
